@@ -95,6 +95,60 @@ class NodeListWidget(QTreeWidget):
 
         self.insertTopLevelItems(0, items)
 
+    def filter_nodes(self, text):
+        """根据文本筛选节点"""
+        if not text:
+            # 如果搜索文本为空，显示所有节点
+            self.construct_tree()
+            return
+
+        self.clear()
+        items = []
+
+        for pkg_name in self.data.keys():
+            # 检查包名是否匹配
+            if text.lower() in pkg_name.lower():
+                item = QTreeWidgetItem([pkg_name])
+                flags = item.flags()
+                flags ^= Qt.ItemIsSelectable
+                flags ^= Qt.ItemIsDropEnabled
+                item.setFlags(flags)
+
+                # 添加所有子节点
+                for node_title in self.data[pkg_name].keys():
+                    node_item = QTreeWidgetItem([node_title])
+                    node_item.setData(0, Qt.UserRole, self.data[pkg_name][node_title])
+                    node_item.setFlags(node_item.flags() ^ Qt.ItemIsDropEnabled)
+                    item.addChild(node_item)
+
+                items.append(item)
+            else:
+                # 检查包内的节点名是否匹配
+                matched_nodes = {}
+                for node_title, node_cls in self.data[pkg_name].items():
+                    if text.lower() in node_title.lower():
+                        matched_nodes[node_title] = node_cls
+
+                if matched_nodes:
+                    item = QTreeWidgetItem([pkg_name])
+                    flags = item.flags()
+                    flags ^= Qt.ItemIsSelectable
+                    flags ^= Qt.ItemIsDropEnabled
+                    item.setFlags(flags)
+
+                    for node_title, node_cls in matched_nodes.items():
+                        node_item = QTreeWidgetItem([node_title])
+                        node_item.setData(0, Qt.UserRole, node_cls)
+                        node_item.setFlags(node_item.flags() ^ Qt.ItemIsDropEnabled)
+                        item.addChild(node_item)
+
+                    items.append(item)
+
+        self.insertTopLevelItems(0, items)
+        # 自动展开所有匹配的节点
+        for i in range(self.topLevelItemCount()):
+            item = self.topLevelItem(i)
+            item.setExpanded(True)
 
 class ItemTreeWidget(QTreeWidget):
 

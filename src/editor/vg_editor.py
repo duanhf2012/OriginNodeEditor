@@ -6,7 +6,8 @@
 import sys
 from functools import partial
 import os
-from PySide6.QtWidgets import QPushButton, QWidget,QBoxLayout,QMainWindow,QVBoxLayout,QFileDialog,QTabWidget,QApplication,QDockWidget,QHBoxLayout,QLabel,QSplitter,QToolBox,QTreeWidgetItem
+from PySide6.QtWidgets import QPushButton, QWidget, QBoxLayout, QMainWindow, QVBoxLayout, QFileDialog, QTabWidget, \
+    QApplication, QDockWidget, QHBoxLayout, QLabel, QSplitter, QToolBox, QTreeWidgetItem, QLineEdit
 from nodes.VariableNode import Getter_Setter_Helper
 from vg_dtypes import VGDtypes
 from vg_edge import NodeEdge
@@ -27,6 +28,7 @@ from vg_node import GraphNode
 from tools.vg_tree_widget import NodeListWidget, FileBrowserWidget
 from tools.vg_tools import VariableAttrSet,EmittingStream,PrintHelper,StdReceiver
 import json
+
 # PrintHelper.DEBUG_MODE = False
 
 import numpy as np
@@ -45,7 +47,7 @@ class VisualGraphWindow(QMainWindow):
         VG_ENV.initialize_node_env()
 
         self.setWindowTitle('Visual Graph')
-        self.resize(2000,1080)
+        self.resize(1900,800)
         self.center()
 
         self.splitter = QSplitter(Qt.Horizontal,self)
@@ -144,8 +146,22 @@ class VisualGraphWindow(QMainWindow):
 
         # 添加一个树
         self.model_data = VG_ENV.get_nodelib_json_data()
+
+        # 创建包含搜索框的节点列表组件
+        searchable_node_widget = QWidget()
+        searchable_layout = QVBoxLayout(searchable_node_widget)
+        searchable_layout.setContentsMargins(0, 0, 0, 0)
+
+        # 添加搜索框
+        search_edit = QLineEdit()
+        search_edit.setPlaceholderText("搜索模块...")
+        searchable_layout.addWidget(search_edit)
+
         self.model_tree = NodeListWidget(self.model_data,self,dragEnabled=True)
-        sw.addComp(f'模块库', self.model_tree, False,40)
+        searchable_layout.addWidget(self.model_tree)
+        sw.addComp(f'模块库', searchable_node_widget, False,40)
+        # 连接搜索信号
+        search_edit.textChanged.connect(self.model_tree.filter_nodes)
 
         self.detail_widget = DetailWidget(None, self)
         sw.addComp(f'详情', self.detail_widget, False,20)
