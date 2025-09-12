@@ -1,0 +1,51 @@
+[{
+		"name": "AddNumbers",
+		"title": "Add Numbers",
+		"package": "Math Operations",
+		"description": "将两个数字相加",
+		"is_pure": true,
+		"inputs": [{
+				"name": "A",
+				"type": "data",
+				"data_type": "Float",
+				"has_input": true
+			},
+			{
+				"name": "B",
+				"type": "data",
+				"data_type": "Float",
+				"has_input": true
+			}
+		],
+		"outputs": [{
+			"name": "Result",
+			"type": "data",
+			"data_type": "Float"
+		}]
+	},
+	{
+		"name": "MultiplyNumbers",
+		"title": "Multiply Numbers",
+		"package": "Math Operations",
+		"description": "将两个数字相乘",
+		"is_pure": true,
+		"inputs": [{
+				"name": "A",
+				"type": "data",
+				"data_type": "Float",
+				"has_input": true
+			},
+			{
+				"name": "B",
+				"type": "data",
+				"data_type": "Float",
+				"has_input": true
+			}
+		],
+		"outputs": [{
+			"name": "Result",
+			"type": "data",
+			"data_type": "Float"
+		}]
+	}
+]

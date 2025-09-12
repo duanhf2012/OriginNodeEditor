@@ -574,9 +574,9 @@ class Node(QObject):
     def get_output_pin(self, index):
         return self.output_running_pins[index]
 
-    @abstractmethod
-    def run_node(self):
-        pass
+    # @abstractmethod
+    # def run_node(self):
+    #     pass
 
     # running in back
     # def run_node_in_back(self):

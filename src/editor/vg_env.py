@@ -11,7 +11,7 @@ import inspect
 import sys
 from vg_node import Node,VGNode
 from vg_node_port import NodeInput,NodeOutput
-
+from tools.json_node_loader import JSONNodeLoader
 
 import os
 
@@ -52,6 +52,12 @@ class VG_ENV:
                 if cls_name != 'Node' and issubclass(cls,Node) and cls.stored:
                     VG_ENV.add_cls_to_lib(
                         f'{sys.modules[module_name].__name__}.{cls_name}', cls)
+
+            # 加载JSON节点定义
+            try:
+                JSONNodeLoader.load_all_json_nodes()
+            except ImportError as e:
+                PrintHelper.printError(f"加载JSON节点失败: {e}")
 
     @staticmethod
     def load_submodules(top_module):

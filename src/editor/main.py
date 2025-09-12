@@ -11,12 +11,15 @@ from PySide6.QtWidgets import QApplication
 from vg_editor import VisualGraphWindow
 from tools.vg_tools import EmittingStream, PrintHelper,StdReceiver
 from tools.QssLoader import QSSLoadTool,resource_path
-
+from tools.json_node_loader import JSONNodeLoader
 
 if __name__ == "__main__":
     app = QApplication([])
     app.setStyle('fusion')
     QSSLoadTool.setStyleSheetFile(app,'./src/editor/qss/main.qss')
+
+    # 在适当的位置添加JSON节点加载
+    JSONNodeLoader.load_all_json_nodes('./json')
 
     try:
         editor = VisualGraphWindow()

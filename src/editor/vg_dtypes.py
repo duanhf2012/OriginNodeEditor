@@ -182,6 +182,38 @@ class VGDtypes:
 
         return data
 
+    @staticmethod
+    def get_dtype_by_name(dtype_name):
+        """根据数据类型名称获取对应的数据类型类"""
+        # 处理大小写不敏感的情况
+        dtype_name = dtype_name.lower()
+
+        # 映射数据类型名称到对应的类
+        dtype_map = {
+            'int': VGDtypes.Integer,
+            'integer': VGDtypes.Integer,
+            'bool': VGDtypes.Bool,
+            'boolean': VGDtypes.Bool,
+            'float': VGDtypes.Float,
+            'double': VGDtypes.Float,
+            'str': VGDtypes.String,
+            'string': VGDtypes.String,
+            'list': VGDtypes.Array,
+            'array': VGDtypes.Array,
+            'dict': VGDtypes.Dict,
+            'dictionary': VGDtypes.Dict,
+            'class': VGDtypes.Class,
+            'object': VGDtypes.Class,
+            'vector': VGDtypes.Vector,
+            'file': VGDtypes.File,
+            'table': VGDtypes.Table,
+            'dataframe': VGDtypes.Table,
+            'column': VGDtypes.Column,
+            'any': VGDtypes.Any
+        }
+
+        # 返回对应的数据类型类，如果找不到则返回Any类型
+        return dtype_map.get(dtype_name, VGDtypes.Any)
 
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """

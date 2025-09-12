@@ -16,10 +16,10 @@ class BeginNode(Node):
     ]
 
     output_pins = [
-        NodeOutput(pin_name='Begin',pin_type='exec')
+        NodeOutput(pin_name='Begin',pin_type='exec'),
+        NodeOutput(pin_name='角色ID', pin_class=VGDtypes.Integer)
     ]
 
-    
     def run_node(self):
         self.exec_output(0)
 
