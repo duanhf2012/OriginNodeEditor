@@ -332,9 +332,9 @@ class VisualGraphWindow(QMainWindow):
         renderMenu.addAction(self.renderAllNodesAction)
 
 
-        runMenu = menuBar.addMenu('&Run')
-        runMenu.addAction(self.runAction)
-        runMenu.addAction(self.runInBackAction)
+        # runMenu = menuBar.addMenu('&Run')
+        # runMenu.addAction(self.runAction)
+        # runMenu.addAction(self.runInBackAction)
 
         helpMenu = menuBar.addMenu('&Help')
 
@@ -507,13 +507,13 @@ class VisualGraphWindow(QMainWindow):
         self.straightenEdgeAction.setShortcut(QKeySequence('Q'))
         self.straightenEdgeAction.triggered.connect(self.straightenEdge)
 
-        self.runAction = QAction('Run Graph',self)
-        self.runAction.setShortcut(QKeySequence('Ctrl+R'))
-        self.runInBackAction = QAction('Run Graph In Background', self)
-        self.runInBackAction.setShortcut(QKeySequence('Ctrl+B'))
+        # self.runAction = QAction('Run Graph',self)
+        # self.runAction.setShortcut(QKeySequence('Ctrl+R'))
+        # self.runInBackAction = QAction('Run Graph In Background', self)
+        # self.runInBackAction.setShortcut(QKeySequence('Ctrl+B'))
 
-        self.runAction.triggered.connect(self.run_graph)
-        self.runInBackAction.triggered.connect(self.run_graph_in_back)
+        # self.runAction.triggered.connect(self.run_graph)
+        # self.runInBackAction.triggered.connect(self.run_graph_in_back)
 
     ################ 节点对齐
 

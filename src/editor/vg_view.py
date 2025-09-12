@@ -45,7 +45,7 @@ class VisualGraphView(QGraphicsView):
         self._edges = []
         self._groups = []
         self._has_begin_node = False
-        self._begin_node = None
+        # self._begin_node = None
 
         # 当前graph保存的路径
         self._saved_path = None
@@ -312,15 +312,14 @@ class VisualGraphView(QGraphicsView):
 
     # 添加节点
     def add_graph_node(self, node, pos=[0, 0]):
-
-        if isinstance(node.running_node, BeginNode):
-            if self._has_begin_node:
-                PrintHelper.debugPrint(
-                    'View -- Add Graph Debug: BeginNode already exists.')
-                return
-            else:
-                self._has_begin_node = True
-                self._begin_node = node.running_node
+        # if isinstance(node.running_node, BeginNode):
+        #     if self._has_begin_node:
+        #         PrintHelper.debugPrint(
+        #             'View -- Add Graph Debug: BeginNode already exists.')
+        #         return
+        #     else:
+        #         self._has_begin_node = True
+        #         self._begin_node = node.running_node
 
         self._scene.addItem(node)
         if not pos is None:
@@ -1058,70 +1057,70 @@ class VisualGraphView(QGraphicsView):
         self.running_graph = RunningGraph(running_nodes, var_jsons)
 
     # RUN Graph
-    def run_graph(self, isInBackGround=False):
+    # def run_graph(self, isInBackGround=False):
+    #
+    #     if self.runner_thread is not None and self.runner_thread.isRunning():
+    #         PrintHelper.printWarning('这个graph已有有线程在运行。')
+    #         return
+    #
+    #     # 首先 在nodes里面找到BeginNode
+    #     # 如果没有则提示没有begin graph， 需要添加begin graph
+    #     if not self._has_begin_node:
+    #         PrintHelper.printError('Graph needs a begin node.')
+    #         return
+    #
+    #     # 首先需要将node进行转化running graph
+    #     # 包括初始化running 节点,绑定action等等
+    #     # 重置变量
+    #     self.convert_to_running_graph()
+    #
+    #     #TODO background运行的方式需要修改
+    #     #TODO 正常情况使用现在的run in background
+    #     #TODO run in background 采用的启动一个独立进程
+    #
+    #     try:
+    #         if not isInBackGround:
+    #             PrintHelper.printInfo(f'Run Graph in Main Thread.')
+    #
+    #             self.running_graph.run_graph()
+    #         else:
+    #             PrintHelper.printInfo(
+    #                 f'Run Graph In Background, new Session:{self._session_id}')
+    #
+    #             self.run_in_new_thread()
+    #
+    #     except ValueError as e:
+    #         PrintHelper.printError(e)
 
-        if self.runner_thread is not None and self.runner_thread.isRunning():
-            PrintHelper.printWarning('这个graph已有有线程在运行。')
-            return
+    # def run_graph_in_back(self):
+    #     # forward的形式进行
+    #     self.run_graph(True)
 
-        # 首先 在nodes里面找到BeginNode
-        # 如果没有则提示没有begin graph， 需要添加begin graph
-        if not self._has_begin_node:
-            PrintHelper.printError('Graph needs a begin node.')
-            return
-
-        # 首先需要将node进行转化running graph
-        # 包括初始化running 节点,绑定action等等
-        # 重置变量
-        self.convert_to_running_graph()
-
-        #TODO background运行的方式需要修改
-        #TODO 正常情况使用现在的run in background
-        #TODO run in background 采用的启动一个独立进程
-
-        try:
-            if not isInBackGround:
-                PrintHelper.printInfo(f'Run Graph in Main Thread.')
-
-                self.running_graph.run_graph()
-            else:
-                PrintHelper.printInfo(
-                    f'Run Graph In Background, new Session:{self._session_id}')
-
-                self.run_in_new_thread()
-
-        except ValueError as e:
-            PrintHelper.printError(e)
-
-    def run_graph_in_back(self):
-        # forward的形式进行
-        self.run_graph(True)
-
-    def begin_to_run(self):
-        self._begin_node.run_node_in_back()
-
-    def run_in_new_thread(self):
-        self.runner_thread = QThread()
-        # 因此需要将node获取value的过程与UI进行脱离
-        self.running_graph.moveToThread(self.runner_thread)
-        self.runner_thread.started.connect(self.running_graph.run_graph)
-        self.running_graph.finished.connect(self.running_done)
-        # 运行preview node
-        self.running_graph.finished.connect(self.run_preview_nodes)
-        self.runner_thread.start()
-
-    def running_done(self):
-        self.runner_thread.quit()
-        self.running_graph.deleteLater()
-        self.runner_thread.deleteLater()
-        self.runner_thread = None
-        PrintHelper.debugPrint('Thread Done')
-
-    def run_preview_nodes(self):
-        for node in self._nodes:
-            if node.is_preview_node:
-                # 是preview node就preview
-                node.preview_port()
+    # def begin_to_run(self):
+    #     self._begin_node.run_node_in_back()
+    #
+    # def run_in_new_thread(self):
+    #     self.runner_thread = QThread()
+    #     # 因此需要将node获取value的过程与UI进行脱离
+    #     self.running_graph.moveToThread(self.runner_thread)
+    #     self.runner_thread.started.connect(self.running_graph.run_graph)
+    #     self.running_graph.finished.connect(self.running_done)
+    #     # 运行preview node
+    #     self.running_graph.finished.connect(self.run_preview_nodes)
+    #     self.runner_thread.start()
+    #
+    # def running_done(self):
+    #     self.runner_thread.quit()
+    #     self.running_graph.deleteLater()
+    #     self.runner_thread.deleteLater()
+    #     self.runner_thread = None
+    #     PrintHelper.debugPrint('Thread Done')
+    #
+    # def run_preview_nodes(self):
+    #     for node in self._nodes:
+    #         if node.is_preview_node:
+    #             # 是preview node就preview
+    #             node.preview_port()
 
     def new_session(self):
         self._session_id += 1

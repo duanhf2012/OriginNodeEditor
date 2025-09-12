@@ -579,10 +579,10 @@ class Node(QObject):
         pass
 
     # running in back
-    def run_node_in_back(self):
-        self.running_start.emit()
-        self.run_node()
-        self.running_finished.emit()
+    # def run_node_in_back(self):
+    #     self.running_start.emit()
+    #     self.run_node()
+    #     self.running_finished.emit()
 
     # TODO 需要确认 graph执行前 已经将running的值设置好了，主要是input pins的
     def input(self, i):
@@ -792,7 +792,7 @@ class TemplateNode(GraphNode):
         # 随机生成的
         self._node_id = 'n_' + str(uuid.uuid1())
 
-        self.running_node = None
+        # self.running_node = None
 
     def set_node_id(self, id):
         self._node_id = id
