@@ -145,7 +145,7 @@ class VisualGraphWindow(QMainWindow):
         # 添加一个树
         self.model_data = VG_ENV.get_nodelib_json_data()
         self.model_tree = NodeListWidget(self.model_data,self,dragEnabled=True)
-        sw.addComp(f'模块库', self.model_tree, False,10)
+        sw.addComp(f'模块库', self.model_tree, False,40)
 
         self.detail_widget = DetailWidget(None, self)
         sw.addComp(f'详情', self.detail_widget, False,20)

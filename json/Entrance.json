@@ -1,0 +1,25 @@
+[{
+		"name": "Entrance",
+		"title": "执行入口",
+		"package": "流程控制",
+		"description": "将两个数字相加",
+		"is_pure": true,
+		"inputs": [{
+				"name": "",
+				"type": "exec"
+			}
+		],
+		"outputs": [{
+				"name": "",
+				"type": "exec"
+			},
+        {
+				"name": "",
+				"type": "exec"
+			},
+        {
+				"name": "",
+				"type": "exec"
+			}]
+	}
+]
