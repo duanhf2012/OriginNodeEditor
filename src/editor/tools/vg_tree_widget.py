@@ -10,6 +10,7 @@ from tools.QssLoader import QSSLoadTool
 from vg_dtypes import VGDtypes
 from PySide6.QtWidgets import QFileSystemModel,QLineEdit,QTreeView,QVBoxLayout
 
+from src.editor.tools.vg_tools import PrintHelper
 
 
 class NodeListWidget(QTreeWidget):
@@ -61,11 +62,19 @@ class NodeListWidget(QTreeWidget):
 
             rootItem = self.invisibleRootItem()
             rootItem.setFlags(rootItem.flags() ^ Qt.ItemIsDropEnabled)
-
     def startDrag(self, supportedActions) -> None:
-
-        self.dragged_item = self.itemAt(self.mapFromGlobal(QCursor.pos()))
+        # 修复：使用当前选中的item而不是鼠标位置
+        selected_items = self.selectedItems()
+        if selected_items:
+            self.dragged_item = selected_items[0]
+        else:
+            self.dragged_item = self.itemAt(self.mapFromGlobal(QCursor.pos()))
         return super().startDrag(supportedActions)
+
+    # def startDrag(self, supportedActions) -> None:
+    #
+    #     self.dragged_item = self.itemAt(self.mapFromGlobal(QCursor.pos()))
+    #     return super().startDrag(supportedActions)
 
     def getDraggedItem(self):
         return self.dragged_item
