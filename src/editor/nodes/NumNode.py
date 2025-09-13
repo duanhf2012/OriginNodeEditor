@@ -16,7 +16,7 @@ NodeConfig.node_title_back_color['Num Action'] = '#66CDAA'
 
 @register_node(name='+ (Integer)',
                output={'sum': VGDtypes.Integer},
-               package='Num Action',
+               package='运算符',
                is_pure=True)
 def addInteger(A: VGDtypes.Integer, B: VGDtypes.Integer):
     return A + B
@@ -24,14 +24,14 @@ def addInteger(A: VGDtypes.Integer, B: VGDtypes.Integer):
 
 @register_node(name='+ (Float)',
                output={'sum': VGDtypes.Float},
-               package='Num Action',
+               package='运算符',
                is_pure=True)
 def add_float(A: VGDtypes.Float, B: VGDtypes.Float) -> VGDtypes.Float:
     return A + B
 
 
 @register_node(name='- (Float)',
-               package='Num Action',
+               package='运算符',
                output={'minus': VGDtypes.Float},
                is_pure=True)
 def minus_float(A: VGDtypes, B: VGDtypes.Float) -> VGDtypes.Float:
@@ -39,7 +39,7 @@ def minus_float(A: VGDtypes, B: VGDtypes.Float) -> VGDtypes.Float:
     return A - B
 
 @register_node(name='* (Float)',
-               package='Num Action',
+               package='运算符',
                output={'mul': VGDtypes.Float},
                is_pure=True)
 def multuply_float(A: VGDtypes, B: VGDtypes.Float) -> VGDtypes.Float:
@@ -48,7 +48,7 @@ def multuply_float(A: VGDtypes, B: VGDtypes.Float) -> VGDtypes.Float:
 
 
 @register_node(name='/ (Float)',
-               package='Num Action',
+               package='运算符',
                output={'divide': VGDtypes.Float},
                is_pure=True)
 def divide_float(A: VGDtypes.Float, B: VGDtypes.Float) -> VGDtypes.Float:
@@ -60,7 +60,7 @@ def divide_float(A: VGDtypes.Float, B: VGDtypes.Float) -> VGDtypes.Float:
 
 
 @register_node(name='// (Float)',
-               package='Num Action',
+               package='运算符',
                output={'times': VGDtypes.Integer},
                is_pure=True)
 def divide_float(A: VGDtypes.Float, B: VGDtypes.Float) -> VGDtypes.Integer:
@@ -71,11 +71,11 @@ def divide_float(A: VGDtypes.Float, B: VGDtypes.Float) -> VGDtypes.Integer:
     return int(A // B)
 
 
-@register_node(name='% (Float)',
-               package='Num Action',
-               output={'divide': VGDtypes.Float},
+@register_node(name='% (Integer)',
+               package='运算符',
+               output={'mod': VGDtypes.Integer},
                is_pure=True)
-def mod_float(A: VGDtypes.Float, B: VGDtypes.Float) -> VGDtypes.Float:
+def mod_integer(A: VGDtypes.Integer, B: VGDtypes.Integer) -> VGDtypes.Integer:
     '''除法，A%B，求余数。'''
     if B == 0:
         raise ValueError(f'除法参数B不能为0。')
@@ -83,7 +83,7 @@ def mod_float(A: VGDtypes.Float, B: VGDtypes.Float) -> VGDtypes.Float:
     return A % B
 
 @register_node(name='Ceil (Float)',
-               package='Num Action',
+               package='运算符',
                output={'Ceil': VGDtypes.Integer},
                is_pure=True)
 def ceil_float(float:VGDtypes.Float)->VGDtypes.Integer:
@@ -92,7 +92,7 @@ def ceil_float(float:VGDtypes.Float)->VGDtypes.Integer:
 
 
 @register_node(name='Round (Float)',
-               package='Num Action',
+               package='运算符',
                output={'Round': VGDtypes.Integer},
                is_pure=True)
 def round_float(float:VGDtypes.Float)->VGDtypes.Integer:
@@ -101,7 +101,7 @@ def round_float(float:VGDtypes.Float)->VGDtypes.Integer:
 
 
 @register_node(name='Floor (Float)',
-               package='Num Action',
+               package='运算符',
                output={'Floor': VGDtypes.Integer},
                is_pure=True)
 def floor_float(float:VGDtypes.Float)->VGDtypes.Integer:
@@ -110,7 +110,7 @@ def floor_float(float:VGDtypes.Float)->VGDtypes.Integer:
 
 
 @register_node(name='> (Float)',
-               package='Num Action',
+               package='运算符',
                output={
                    'isTrue': VGDtypes.Bool,
                    'A': VGDtypes.Float,
@@ -123,7 +123,7 @@ def greater_float(A: VGDtypes.Float, B: VGDtypes.Float) -> VGDtypes.Float:
 
 
 @register_node(name='< (Float)',
-               package='Num Action',
+               package='运算符',
                output={
                    'isTrue': VGDtypes.Bool,
                    'A': VGDtypes.Float,
@@ -136,7 +136,7 @@ def smaller_float(A: VGDtypes.Float, B: VGDtypes.Float) -> VGDtypes.Float:
 
 
 @register_node(name='>= (Float)',
-               package='Num Action',
+               package='运算符',
                output={
                    'isTrue': VGDtypes.Bool,
                    'A': VGDtypes.Float,
@@ -149,7 +149,7 @@ def not_smaller_float(A: VGDtypes.Float, B: VGDtypes.Float) -> VGDtypes.Float:
 
 
 @register_node(name='<= (Float)',
-               package='Num Action',
+               package='运算符',
                output={
                    'isTrue': VGDtypes.Bool,
                    'A': VGDtypes.Float,
@@ -163,7 +163,7 @@ def not_greater_float(A: VGDtypes.Float, B: VGDtypes.Float) -> VGDtypes.Float:
 
 @register_node(name='!= (Float)',
                output={'Not Equal': bool},
-               package='Num Action',
+               package='运算符',
                is_pure=True)
 def not_equal_float(A: VGDtypes.Float, B: VGDtypes.Float) -> bool:
 
@@ -172,7 +172,7 @@ def not_equal_float(A: VGDtypes.Float, B: VGDtypes.Float) -> bool:
 
 @register_node(name='== (Float)',
                output={'Equal': bool},
-               package='Num Action',
+               package='运算符',
                is_pure=True)
 def equal(A: VGDtypes.Float, B: VGDtypes.Float) -> bool:
 
@@ -181,7 +181,7 @@ def equal(A: VGDtypes.Float, B: VGDtypes.Float) -> bool:
 
 class GreaterIntegerNode(Node):
 
-    package_name = 'Num Action'
+    package_name = '运算符'
 
     node_title = '> (Integer)'
     node_description = '基本运算 除法'
@@ -210,7 +210,7 @@ class GreaterIntegerNode(Node):
 
 @register_node(name='!= (Integer)',
                output={'Not Equal': bool},
-               package='Num Action',
+               package='运算符',
                is_pure=True)
 def not_equal2(A: VGDtypes.Integer, B: VGDtypes.Integer) -> bool:
 
@@ -219,7 +219,7 @@ def not_equal2(A: VGDtypes.Integer, B: VGDtypes.Integer) -> bool:
 
 @register_node(name='== (Integer)',
                output={'Equal': bool},
-               package='Num Action',
+               package='运算符',
                is_pure=True)
 def equal2(A: VGDtypes.Integer, B: VGDtypes.Integer) -> bool:
     return A == B

@@ -475,9 +475,16 @@ class ItemTreeWidget(QTreeWidget):
         self.dragged_item = None
 
     def startDrag(self, supportedActions) -> None:
-
-        self.dragged_item = self.itemAt(self.mapFromGlobal(QCursor.pos()))
+        # 修复：使用当前选中的item而不是鼠标位置
+        selected_items = self.selectedItems()
+        if selected_items:
+            self.dragged_item = selected_items[0]
+        else:
+            self.dragged_item = self.itemAt(self.mapFromGlobal(QCursor.pos()))
         return super().startDrag(supportedActions)
+
+        # self.dragged_item = self.itemAt(self.mapFromGlobal(QCursor.pos()))
+        # return super().startDrag(supportedActions)
 
     def getDraggedItem(self):
         return self.dragged_item

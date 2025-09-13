@@ -1,7 +1,7 @@
 [{
 		"name": "Entrance",
 		"title": "执行入口",
-		"package": "流程控制",
+		"package": "入口",
 		"description": "将两个数字相加",
 		"is_pure": true,
 		"inputs": [{

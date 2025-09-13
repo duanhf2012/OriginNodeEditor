@@ -17,13 +17,13 @@ NodeConfig.node_title_back_color['Timer'] = '#458899'
 
 class SleepNode(Node):
 
-    package_name = 'Timer'
-    node_title = 'Delay'
+    package_name = '定时器'
+    node_title = 'Sleep'
     node_description = 'Sleep Node'
 
     input_pins = [
         NodeInput(pin_type='exec'),
-        NodeInput(pin_name='secs', pin_class=VGDtypes.Float, pin_type='data')
+        NodeInput(pin_name='mill', pin_class=VGDtypes.Integer, pin_type='data')
     ]
 
     output_pins = [NodeOutput(pin_name='Completed', pin_type='exec')]
@@ -33,35 +33,35 @@ class SleepNode(Node):
         sleep(t)
         self.exec_output(0)
 
-
-@register_node(name='Add',
-               input={
-                   'a': int,
-                   'b': int
-               },
-               output={'sum': int},
-               package='Timer',
-               is_pure=True)
-def Add(a: int, b: int) -> int:
-    '''基础运算加法'''
-    return a + b
-
-
-@register_node(output={
-                   'divide': int,
-                   'mode': int
-               },
-               package='Timer',
-               is_pure=True)
-def Divide(a:int, b:int)->int:
-    '''基础运算加法'''
-    return a / b, a % b
-
-@register_node(name='Print To Console',package='Timer',output={'str':str})
-def PrintString(str:str)->str:
-    print(str)
-
-# TODO control的即多个分支的无法使用这种进行
+#
+# @register_node(name='Add',
+#                input={
+#                    'a': int,
+#                    'b': int
+#                },
+#                output={'sum': int},
+#                package='Timer',
+#                is_pure=True)
+# def Add(a: int, b: int) -> int:
+#     '''基础运算加法'''
+#     return a + b
+#
+#
+# @register_node(output={
+#                    'divide': int,
+#                    'mode': int
+#                },
+#                package='Timer',
+#                is_pure=True)
+# def Divide(a:int, b:int)->int:
+#     '''基础运算加法'''
+#     return a / b, a % b
+#
+# @register_node(name='Print To Console',package='Timer',output={'str':str})
+# def PrintString(str:str)->str:
+#     print(str)
+#
+# # TODO control的即多个分支的无法使用这种进行
 
 
 # 这种类的执行方法是可以的
@@ -79,11 +79,11 @@ def PrintString(str:str)->str:
 #         return self.get(key,None)
 
 
-class VDict(dict[KT,VT]):
-
-    @register_node(name='get',
-                   output={'value': KT},
-                   package='Timer',
-                   is_pure=True)
-    def get(self: dict, key: VT)->VT:
-        return self.get(key, None)
+# class VDict(dict[KT,VT]):
+#
+#     @register_node(name='get',
+#                    output={'value': KT},
+#                    package='Timer',
+#                    is_pure=True)
+#     def get(self: dict, key: VT)->VT:
+#         return self.get(key, None)
