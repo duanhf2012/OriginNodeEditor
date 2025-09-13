@@ -6,7 +6,7 @@
 		"is_pure": true,
 		"inputs": [{
 				"name": "",
-				"type": "exec"
+				"type": "datqa"
 			}
 		],
 		"outputs": [{

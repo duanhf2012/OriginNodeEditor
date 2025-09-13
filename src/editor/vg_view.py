@@ -17,7 +17,7 @@ from PySide6.QtWidgets import (QApplication, QGraphicsProxyWidget, QFileDialog,
 from vg_dtypes import VGDtypes
 from nodes.VariableNode import Getter_Setter_Helper
 
-from nodes.ActionNode import BeginNode
+# from nodes.ActionNode import BeginNode
 from vg_edge import CuttingLine, DraggingEdge, NodeEdge
 from vg_group import NodeGroup
 from vg_env import VG_ENV
@@ -344,9 +344,9 @@ class VisualGraphView(QGraphicsView):
 
     def remove_node(self, node):
 
-        if isinstance(node.running_node, BeginNode):
-            self._has_begin_node = False
-            self._begin_node = None
+        # if isinstance(node.running_node, BeginNode):
+        #     self._has_begin_node = False
+        #     self._begin_node = None
 
         self._nodes.remove(node)
 

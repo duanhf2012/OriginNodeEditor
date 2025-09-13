@@ -14,9 +14,9 @@
 import sys
 
 sys.path.append('..')
-from vg_dtypes import VGDtypes
-from vg_env import register_node
-from vg_config import NodeConfig
+# from vg_dtypes import VGDtypes
+# from vg_env import register_node
+# from vg_config import NodeConfig
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 
 import pandas as pd
@@ -29,7 +29,7 @@ import warnings
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
-NodeConfig.node_title_back_color['Regression Analysis'] = '#ff843f'
+# NodeConfig.node_title_back_color['Regression Analysis'] = '#ff843f'
 
 #
 # class RegressionResultTableWrapper:

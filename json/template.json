@@ -1,7 +1,7 @@
 [{
 		"name": "AddNumbers",
 		"title": "Add Numbers",
-		"package": "Math Operations",
+		"package": "运算符",
 		"description": "将两个数字相加",
 		"is_pure": true,
 		"inputs": [{
@@ -26,7 +26,7 @@
 	{
 		"name": "MultiplyNumbers",
 		"title": "Multiply Numbers",
-		"package": "Math Operations",
+		"package": "运算符",
 		"description": "将两个数字相乘",
 		"is_pure": true,
 		"inputs": [{

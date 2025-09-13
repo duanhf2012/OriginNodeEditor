@@ -3,7 +3,7 @@ import logging
 from PySide6.QtCore import QObject,Signal
 from vg_dtypes import VGDtypes
 from tools.VariableManager import Variable, VariableManager
-from nodes.ActionNode import BeginNode
+# from nodes.ActionNode import BeginNode
 
 
 class RunningGraph(QObject):

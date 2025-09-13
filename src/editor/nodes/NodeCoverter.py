@@ -11,7 +11,7 @@ from vg_dtypes import VGDtypes
 
 @register_node(name='bool -> str',
                output={'str': VGDtypes.String},
-               package='Node Converter',
+               package='基础',
                is_pure=True)
 def bool2String(bool: VGDtypes.Bool):
     return 'True' if bool else 'False'
@@ -19,7 +19,7 @@ def bool2String(bool: VGDtypes.Bool):
 
 @register_node(name='int -> str',
                output={'str': VGDtypes.String},
-               package='Node Converter',
+               package='基础',
                is_pure=True)
 def int2String(int: VGDtypes.Integer):
     return str(int)
@@ -27,7 +27,7 @@ def int2String(int: VGDtypes.Integer):
 
 @register_node(name='float -> str',
                output={'str': VGDtypes.String},
-               package='Node Converter',
+               package='基础',
                is_pure=True)
 def float2String(float: VGDtypes.Float):
     return str(float)
@@ -35,14 +35,14 @@ def float2String(float: VGDtypes.Float):
 
 @register_node(name='obj -> str',
                output={'str': VGDtypes.String},
-               package='Node Converter',
+               package='基础',
                is_pure=True)
 def obj2String(object: VGDtypes.Class):
     return str(object)
 
 
 @register_node(name='dict -> str',
-               package='Node Converter',
+               package='基础',
                output={'str': VGDtypes.String},
                is_pure=True)
 def dict2String(dic: VGDtypes.Dict):
@@ -50,7 +50,7 @@ def dict2String(dic: VGDtypes.Dict):
 
 
 @register_node(name='array -> str',
-               package='Node Converter',
+               package='基础',
                output={'str': VGDtypes.String},
                is_pure=True)
 def array2String(array: VGDtypes.Array):
@@ -58,7 +58,7 @@ def array2String(array: VGDtypes.Array):
 
 
 @register_node(name='int -> float',
-               package='Node Converter',
+               package='基础',
                output={'str': VGDtypes.Float},
                is_pure=True)
 def int2Float(int: VGDtypes.Integer):
@@ -66,7 +66,7 @@ def int2Float(int: VGDtypes.Integer):
 
 
 @register_node(name='str -> float',
-               package='Node Converter',
+               package='基础',
                output={'float': VGDtypes.Float},
                is_pure=True)
 def str2Float(str: VGDtypes.String):
@@ -78,7 +78,7 @@ def str2Float(str: VGDtypes.String):
 
 
 @register_node(name='str -> int',
-               package='Node Converter',
+               package='基础',
                output={'int': VGDtypes.Integer},
                is_pure=True)
 def str2Integer(str: VGDtypes.String):
@@ -91,7 +91,7 @@ def str2Integer(str: VGDtypes.String):
 
 
 @register_node(name='float -> int',
-               package='Node Converter',
+               package='基础',
                output={'int': VGDtypes.Integer},
                is_pure=True)
 def float2Int(float: VGDtypes.Float):
