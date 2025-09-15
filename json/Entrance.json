@@ -5,8 +5,8 @@
 		"description": "将两个数字相加",
 		"is_pure": true,
 		"inputs": [{
-				"name": "",
-				"type": "datqa"
+				"name": "entityid",
+				"type": "data"
 			}
 		],
 		"outputs": [{
