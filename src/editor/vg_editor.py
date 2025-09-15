@@ -128,8 +128,8 @@ class VisualGraphWindow(QMainWindow):
         # 函数和变量使用另一个 SidebarWidget
         sw = SidebarWidget(title='', isStretch=False)
         # 添加一个树
-        self.func_tree = FuncTreeWidget(sw)
-        sw.addComp(f'函数', self.func_tree, False,4)
+        # self.func_tree = FuncTreeWidget(sw)
+        # sw.addComp(f'函数', self.func_tree, False,4)
 
         self.vari_tree = VariableTreeWidget(sw)
         sw.addComp(f'变量', self.vari_tree, False,5)
