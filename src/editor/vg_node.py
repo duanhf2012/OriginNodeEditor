@@ -17,7 +17,8 @@ from vg_config import EditorConfig, NodeConfig
 import uuid
 from execution.RunningPort import RunningPin
 from typing import Callable, Any
-
+import time
+import random
 
 class GraphNode(QGraphicsItem):
 
@@ -790,7 +791,11 @@ class TemplateNode(GraphNode):
         self._input_data_ready = False
         self._output_data_ready = False
         # 随机生成的
-        self._node_id = 'n_' + str(uuid.uuid1())
+        #self._node_id = 'n_' + str(uuid.uuid1())
+        timestamp = int(time.time() * 1000)  # 毫秒时间戳
+        random_part = random.randint(0, 0xFFFF)  # 16位随机数
+        unique_id = (timestamp << 16) | random_part  # 组合成64位整数
+        self._node_id = str(unique_id)
 
         # self.running_node = None
 

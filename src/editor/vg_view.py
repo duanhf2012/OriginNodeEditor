@@ -544,7 +544,6 @@ class VisualGraphView(QGraphicsView):
 
     # 将当前view的graph保存到指定的文件内
     def save_graph_to_file(self, filepath):
-
         data = {}
         data['graph_name'] = ''
         data['time'] = ''

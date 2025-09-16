@@ -39,7 +39,8 @@ class CutCommand(QUndoCommand):
                         self.items.append(edge)
 
                 item.remove_self()
-
+            elif isinstance(item,NodeEdge):
+                item.remove_self()
             elif isinstance(item,NodeGroup):
                 self.editor.remove_group(item)
 

@@ -21,5 +21,24 @@
 				"name": "",
 				"type": "exec"
 			}]
+	},
+  {
+		"name": "Entrance_Integer",
+		"title": "执行入口(整型参数)",
+		"package": "入口",
+		"description": "执行入口(整型参数)",
+		"is_pure": true,
+		"inputs": [{
+				"name": "",
+				"type": "data",
+                "data_type": "array",
+                "has_input": false,
+                "pin_widget": "IntegerArrayWdg"
+			}
+		],
+		"outputs": [{
+				"name": "",
+				"type": "exec"
+			}]
 	}
 ]

@@ -7,8 +7,35 @@ from vg_node_port import NodeInput, NodeOutput
 from vg_dtypes import VGDtypes
 from tools.vg_tools import PrintHelper
 
+# 导入所有支持的widget类
+from widgets.PortWidget import StringInputWdg, IntInputWdg, FloatInputWdg, CheckboxWdg
+from widgets.PortWidget import StringArrayWdg, IntegerArrayWdg
 
 class JSONNodeLoader:
+    # Widget名称到widget类的映射
+    WIDGET_MAP = {
+        'StringInputWdg': StringInputWdg,
+        'IntInputWdg': IntInputWdg,
+        'FloatInputWdg': FloatInputWdg,
+        'CheckboxWdg': CheckboxWdg,
+        'StringArrayWdg': StringArrayWdg,
+        'IntegerArrayWdg': IntegerArrayWdg,
+        # 可以继续添加其他widget映射
+    }
+
+    @staticmethod
+    def _get_widget_class(widget_name):
+        """根据widget名称获取widget类"""
+        if widget_name is None:
+            return None
+
+        # 如果已经是类对象，直接返回
+        if not isinstance(widget_name, str):
+            return widget_name
+
+        # 从映射中获取widget类
+        return JSONNodeLoader.WIDGET_MAP.get(widget_name)
+
     @staticmethod
     def load_nodes_from_json(json_file_path):
         """从JSON文件加载节点定义"""
@@ -49,14 +76,22 @@ class JSONNodeLoader:
                 pin_type = input_def.get('type', 'data')
                 data_type = input_def.get('data_type', 'Any')
                 has_input = input_def.get('has_input', True)
-
                 pin_class = VGDtypes.get_dtype_by_name(data_type)
+
+                pin_widget = input_def.get('pin_widget', None)
+                # 将字符串widget名称转换为widget类
+                if pin_widget is not None:
+                    pin_widget = JSONNodeLoader._get_widget_class(pin_widget)
+                    if pin_widget is None:
+                        PrintHelper.printError(f"未知的widget类型: {input_def.get('pin_widget')}")
+                        pin_widget = None
 
                 input_pins.append(NodeInput(
                     pin_name=pin_name,
                     pin_type=pin_type,
                     pin_class=pin_class,
-                    has_input=has_input
+                    has_input=has_input,
+                    pin_widget=pin_widget
                 ))
 
             # 创建输出端口
@@ -89,7 +124,7 @@ class JSONNodeLoader:
             })
 
             # 注册节点
-            cls_name = f'json_nodes.{node_name}'
+            cls_name = f'tools.json_node_loader.{node_name}'
             from vg_env import VG_ENV
             VG_ENV.add_cls_to_lib(cls_name, node_cls)
 

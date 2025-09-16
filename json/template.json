@@ -47,5 +47,26 @@
 			"type": "data",
 			"data_type": "Float"
 		}]
+	},
+	{
+		"name": "Output",
+		"title": "打印值",
+		"package": "测试",
+		"description": "打印值",
+		"is_pure": true,
+		"inputs": [{
+				"name": "",
+				"type": "exec"
+			},{
+				"name": "要打印的值",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			}
+		],
+		"outputs": [{
+			"name": "结果",
+			"type": "exec"
+		}]
 	}
 ]

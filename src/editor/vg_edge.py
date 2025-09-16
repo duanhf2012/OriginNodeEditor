@@ -8,7 +8,8 @@ from PySide6.QtCore import Qt,QRectF,QPointF
 from vg_node_port import NodePort
 import uuid
 from execution.RunningEdge import RunningEdge
-
+import time
+import random
 
 class NodeEdge(QGraphicsPathItem):
 
@@ -48,7 +49,11 @@ class NodeEdge(QGraphicsPathItem):
 
 
     def init_edge_id(self):
-        self._edge_id = 'e_'+str(uuid.uuid1())
+        timestamp = int(time.time() * 1000)  # 毫秒时间戳
+        random_part = random.randint(0, 0xFFFF)  # 16位随机数
+        unique_id = (timestamp << 16) | random_part  # 组合成64位整数
+        self._edge_id = str(unique_id)
+        #self._edge_id = 'e_'+str(uuid.uuid1())
 
     def set_edge_id(self,edge_id):
         self._edge_id = edge_id
