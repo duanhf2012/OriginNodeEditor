@@ -1,5 +1,5 @@
 [{
-		"name": "Entrance",
+		"name": "Entrance_000001",
 		"title": "执行入口",
 		"package": "入口",
 		"description": "将两个数字相加",
@@ -23,22 +23,47 @@
 			}]
 	},
   {
-		"name": "Entrance_Integer",
-		"title": "执行入口(整型参数)",
+		"name": "Entrance_000002",
+		"title": "执行入口(数组)",
 		"package": "入口",
-		"description": "执行入口(整型参数)",
+		"description": "执行入口(整型数组)",
 		"is_pure": true,
-		"inputs": [{
-				"name": "",
-				"type": "data",
-                "data_type": "array",
-                "has_input": false,
-                "pin_widget": "IntegerArrayWdg"
-			}
-		],
+		"inputs": [],
 		"outputs": [{
 				"name": "",
 				"type": "exec"
+			},{
+				"name": "param数组",
+				"type": "data",
+				"data_type": "array",
+				"has_input": true
+			}]
+	},
+  {
+		"name": "Entrance_IntParam_000003",
+		"title": "执行入口(2参数)",
+		"package": "入口",
+		"description": "执行入口(2参数)",
+		"is_pure": true,
+		"inputs": [],
+		"outputs": [{
+				"name": "",
+				"type": "exec"
+			},{
+				"name": "对象ID",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			},{
+				"name": "参数1",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			},{
+				"name": "参数2",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
 			}]
 	}
 ]
