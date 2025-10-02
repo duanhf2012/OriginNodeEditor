@@ -1,29 +1,6 @@
-[{
-		"name": "Entrance_000001",
-		"title": "执行入口",
-		"package": "入口",
-		"description": "将两个数字相加",
-		"is_pure": true,
-		"inputs": [{
-				"name": "entityid",
-				"type": "data"
-			}
-		],
-		"outputs": [{
-				"name": "",
-				"type": "exec"
-			},
-        {
-				"name": "",
-				"type": "exec"
-			},
-        {
-				"name": "",
-				"type": "exec"
-			}]
-	},
+[
   {
-		"name": "Entrance_000002",
+		"name": "Entrance_ArrayParam_000002",
 		"title": "执行入口(数组)",
 		"package": "入口",
 		"description": "执行入口(整型数组)",
@@ -33,6 +10,11 @@
 				"name": "",
 				"type": "exec"
 			},{
+				"name": "对象ID",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			},{
 				"name": "param数组",
 				"type": "data",
 				"data_type": "array",
@@ -40,7 +22,7 @@
 			}]
 	},
   {
-		"name": "Entrance_IntParam_000003",
+		"name": "Entrance_IntParam_000001",
 		"title": "执行入口(2参数)",
 		"package": "入口",
 		"description": "执行入口(2参数)",
