@@ -54,6 +54,8 @@ class InputWidget(PortWidget):
             return float(self.inputW.text())
 
         elif self.constraint == 'int':
+            if self.inputW.text() == '':
+                return 0
             return int(self.inputW.text())
 
         return self.inputW.text()
@@ -134,6 +136,8 @@ class ArrayWdg(PortWidget):
         self.add_btn = AddButton(15)
         self.remove_btn = MinusButton(15)
 
+        # 添加弹性空间使按钮右对齐
+        self.lower_layout.addStretch()
         self.lower_layout.addWidget(self.add_btn)
         self.lower_layout.addWidget(self.remove_btn)
 
@@ -168,7 +172,9 @@ class ArrayWdg(PortWidget):
 
     def addSubWidget(self):
         subwdg = self.subWdg_cls(self)
-        subwdg.setFixedHeight(NodeConfig.port_icon_size)
+        subwdg.setFixedHeight(NodeConfig.port_icon_size+3.5)
+        # 设置子widget的宽度与端口图标尺寸一致，确保对齐
+        # subwdg.setFixedWidth(NodeConfig.port_icon_size)
         self.upper_layout.addWidget(subwdg)
         self.inputWs.append(subwdg)
         self.widget_height += NodeConfig.port_icon_size+5

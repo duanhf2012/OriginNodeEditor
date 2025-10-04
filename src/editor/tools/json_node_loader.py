@@ -103,13 +103,15 @@ class JSONNodeLoader:
                 pin_name = output_def.get('name', '')
                 pin_type = output_def.get('type', 'data')
                 data_type = output_def.get('data_type', 'Any')
+                hide_icon = output_def.get('hide_icon', False)  # 获取hide_icon属性
 
                 pin_class = VGDtypes.get_dtype_by_name(data_type)
 
                 output_pins.append(NodeOutput(
                     pin_name=pin_name,
                     pin_type=pin_type,
-                    pin_class=pin_class
+                    pin_class=pin_class,
+                    hide_icon=hide_icon  # 传递hide_icon参数
                 ))
 
             # 创建节点类

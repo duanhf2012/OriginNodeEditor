@@ -63,5 +63,218 @@
 				"data_type": "Integer",
 				"has_input": false
 			}]
+	},
+
+  {
+		"name": "BoolIf",
+		"title": "布尔条件",
+		"package": "流程控制",
+		"description": "布尔条件",
+		"is_pure": true,
+		"inputs": [{
+				"name": "",
+				"type": "exec"
+			},
+          {
+				"name": "布尔变量",
+				"type": "data",
+				"data_type": "Boolean",
+				"has_input": true
+			}
+        ],
+		"outputs": [{
+				"name": "假",
+				"type": "exec"
+			},
+        {
+				"name": "真",
+				"type": "exec"
+			}]
+	} ,
+
+  {
+		"name": "GreaterThanInteger",
+		"title": "大于(整型) >",
+		"package": "流程控制",
+		"description": "大于(整型)",
+		"is_pure": true,
+		"inputs": [{
+				"name": "",
+				"type": "exec"
+			},
+          {
+				"name": ">=",
+				"type": "data",
+				"data_type": "Boolean",
+				"has_input": true
+			}
+          ,
+          {
+				"name": "A",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			},
+          {
+				"name": "B",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			}
+        ],
+		"outputs": [{
+				"name": "假",
+				"type": "exec"
+			},
+        {
+				"name": "真",
+				"type": "exec"
+			}]
+	},
+
+
+  {
+		"name": "LessThanInteger",
+		"title": "小于(整型) <",
+		"package": "流程控制",
+		"description": "小于(整型)",
+		"is_pure": true,
+		"inputs": [{
+				"name": "",
+				"type": "exec"
+			},
+          {
+				"name": "<=",
+				"type": "data",
+				"data_type": "Boolean",
+				"has_input": true
+			}
+          ,
+          {
+				"name": "A",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			},
+          {
+				"name": "B",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			}
+        ],
+		"outputs": [{
+				"name": "假",
+				"type": "exec"
+			},
+        {
+				"name": "真",
+				"type": "exec"
+			}]
+	},
+  {
+		"name": "EqualInteger",
+		"title": "等于(整型)==",
+		"package": "流程控制",
+		"description": "大于(整型)",
+		"is_pure": true,
+		"inputs": [{
+				"name": "",
+				"type": "exec"
+			}
+          ,
+          {
+				"name": "A",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			},
+          {
+				"name": "B",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			}
+        ],
+		"outputs": [{
+				"name": "假",
+				"type": "exec"
+			},
+        {
+				"name": "真",
+				"type": "exec"
+			}]
+	},
+  {
+		"name": "RangeCompare",
+		"title": "范围比较<=",
+		"package": "流程控制",
+		"description": "范围比较",
+		"is_pure": true,
+		"inputs": [{
+				"name": "",
+				"type": "exec"
+			} ,
+          {
+				"name": "值",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			}
+          ,
+          {
+				"name": "",
+				"type": "data",
+				"data_type": "Array",
+				"has_input": false,
+                "pin_widget": "IntegerArrayWdg"
+			}
+        ],
+		"outputs": [{
+				"name": "否则",
+				"type": "exec"
+			} ,
+          {
+				"name": "",
+				"type": "data",
+                "hide_icon": true
+			},{
+				"name": "",
+				"type": "exec"
+			},{
+				"name": "",
+				"type": "exec"
+			},{
+				"name": "",
+				"type": "exec"
+			},{
+				"name": "",
+				"type": "exec"
+			}
+        ]
+	},
+  {
+		"name": "Probability",
+		"title": "概率(万分比)",
+		"package": "流程控制",
+		"description": "概率(万分比)",
+		"is_pure": true,
+		"inputs": [
+          {
+				"name": "概率",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			}
+
+        ],
+		"outputs": [{
+				"name": "未命中",
+				"type": "exec"
+			},{
+				"name": "命中",
+				"type": "exec"
+			}
+        ]
 	}
 ]

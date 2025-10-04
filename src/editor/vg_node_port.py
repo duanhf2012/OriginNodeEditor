@@ -198,15 +198,16 @@ class EXECPort(NodePort):
                  port_class='str',
                  port_color='#ffffff',
                  port_type=NodePort.PORT_TYPE_EXEC_IN,
-                 parent=None):
-        super().__init__(port_label, port_class, port_color, port_type, parent)
+                 parent=None,
+                 hide_icon=False):
+        super().__init__(port_label, port_class, port_color, port_type, parent, hide_icon=hide_icon)
 
 
 
 class EXECInPort(EXECPort):
 
-    def __init__(self,port_label=''):
-        super().__init__(port_label=port_label, port_type=NodePort.PORT_TYPE_EXEC_IN)
+    def __init__(self,port_label='', hide_icon=False):
+        super().__init__(port_label=port_label, port_type=NodePort.PORT_TYPE_EXEC_IN, hide_icon=hide_icon)
 
     def paint(self, painter: QPainter, option, widget) -> None:
 
@@ -237,8 +238,8 @@ class EXECInPort(EXECPort):
 
 class EXECOutPort(EXECPort):
 
-    def __init__(self,port_label=''):
-        super().__init__(port_label=port_label, port_type=NodePort.PORT_TYPE_EXEC_OUT)
+    def __init__(self,port_label='', hide_icon=False):
+        super().__init__(port_label=port_label, port_type=NodePort.PORT_TYPE_EXEC_OUT, hide_icon=hide_icon)
 
     def paint(self, painter: QPainter, option, widget) -> None:
         # print('==',self.mapToScene(self.pos()),self._parent_node._id)
@@ -246,23 +247,25 @@ class EXECOutPort(EXECPort):
         painter.setFont(self._port_font)
         painter.drawText(QRectF(0,0,self._port_label_size,self._port_icon_size),Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignVCenter,self._port_label)
 
-        port_outline = QPainterPath()
-        poly = QPolygonF()
-        poly.append(QPointF(self._port_label_size+0.5*self._port_icon_size,0.2*self._port_icon_size))
-        poly.append(QPointF(self._port_label_size+0.5*self._port_icon_size+0.25*self._port_icon_size,0.2*self._port_icon_size))
-        poly.append(QPointF(self._port_label_size+0.5*self._port_icon_size+self._port_icon_size*0.5,self._port_icon_size*0.5))
-        poly.append(QPointF(self._port_label_size+0.5*self._port_icon_size+0.25*self._port_icon_size,0.8*self._port_icon_size))
-        poly.append(QPointF(self._port_label_size+0.5*self._port_icon_size,0.8*self._port_icon_size))
-        port_outline.addPolygon(poly)
+        # 只有在不隐藏图标时才绘制图标
+        if not self._hide_icon:
+            port_outline = QPainterPath()
+            poly = QPolygonF()
+            poly.append(QPointF(self._port_label_size+0.5*self._port_icon_size,0.2*self._port_icon_size))
+            poly.append(QPointF(self._port_label_size+0.5*self._port_icon_size+0.25*self._port_icon_size,0.2*self._port_icon_size))
+            poly.append(QPointF(self._port_label_size+0.5*self._port_icon_size+self._port_icon_size*0.5,self._port_icon_size*0.5))
+            poly.append(QPointF(self._port_label_size+0.5*self._port_icon_size+0.25*self._port_icon_size,0.8*self._port_icon_size))
+            poly.append(QPointF(self._port_label_size+0.5*self._port_icon_size,0.8*self._port_icon_size))
+            port_outline.addPolygon(poly)
 
-        if not self.is_connected():
-            painter.setPen(self._pen_default)
-            painter.setBrush(Qt.NoBrush)
-            painter.drawPath(port_outline.simplified())
-        else:
-            painter.setPen(Qt.NoPen)
-            painter.setBrush(self._brush_default)
-            painter.drawPath(port_outline.simplified())
+            if not self.is_connected():
+                painter.setPen(self._pen_default)
+                painter.setBrush(Qt.NoBrush)
+                painter.drawPath(port_outline.simplified())
+            else:
+                painter.setPen(Qt.NoPen)
+                painter.setBrush(self._brush_default)
+                painter.drawPath(port_outline.simplified())
 
     def get_port_pos(self) -> QPointF:
         port_pos = self.scenePos()
@@ -348,9 +351,10 @@ class OutputPort(NodePort):
                  port_label='',
                  port_class='str',
                  port_color='#ffffff',
-                 parent=None):
+                 parent=None,
+                 hide_icon=False):
         super().__init__(port_label, port_class, port_color,
-                         NodePort.PORT_TYPE_OUTPUT, parent)
+                         NodePort.PORT_TYPE_OUTPUT, parent,hide_icon=hide_icon)
 
     def paint(self, painter: QPainter, option, widget) -> None:
 
@@ -363,30 +367,32 @@ class OutputPort(NodePort):
             Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignVCenter, self._port_label)
 
         # icon o> 来表示
-        if not self.is_connected():
-            painter.setPen(self._pen_default)
-            painter.setBrush(Qt.NoBrush)
-        else:
-            painter.setPen(Qt.NoPen)
-            painter.setBrush(self._brush_default)
-        painter.drawEllipse(
-            QPointF(self._port_label_size+0.5 * self._port_icon_size, 0.5 * self._port_icon_size),
-            0.25 * self._port_icon_size, 0.25 * self._port_icon_size)
-        #  >
-        poly = QPolygonF()
-        poly.append(
-            QPointF(self._port_label_size + 0.85 * self._port_icon_size,
-                    0.35 * self._port_icon_size))
-        poly.append(
-            QPointF(self._port_label_size + 1 * self._port_icon_size,
-                    0.5 * self._port_icon_size))
-        poly.append(
-            QPointF(self._port_label_size + 0.85 * self._port_icon_size,
-                    0.65 * self._port_icon_size))
+        # 只有在不隐藏图标时才绘制图标
+        if not self._hide_icon:
+            if not self.is_connected():
+                painter.setPen(self._pen_default)
+                painter.setBrush(Qt.NoBrush)
+            else:
+                painter.setPen(Qt.NoPen)
+                painter.setBrush(self._brush_default)
+            painter.drawEllipse(
+                QPointF(self._port_label_size+0.5 * self._port_icon_size, 0.5 * self._port_icon_size),
+                0.25 * self._port_icon_size, 0.25 * self._port_icon_size)
+            #  >
+            poly = QPolygonF()
+            poly.append(
+                QPointF(self._port_label_size + 0.85 * self._port_icon_size,
+                        0.35 * self._port_icon_size))
+            poly.append(
+                QPointF(self._port_label_size + 1 * self._port_icon_size,
+                        0.5 * self._port_icon_size))
+            poly.append(
+                QPointF(self._port_label_size + 0.85 * self._port_icon_size,
+                        0.65 * self._port_icon_size))
 
-        painter.setBrush(self._brush_default)
-        painter.setPen(Qt.NoPen)
-        painter.drawPolygon(poly)
+            painter.setBrush(self._brush_default)
+            painter.setPen(Qt.NoPen)
+            painter.drawPolygon(poly)
 
     def get_port_pos(self) -> QPointF:
         port_pos = self.scenePos()
@@ -449,14 +455,22 @@ class NodeInput(Pin):
         return self.port
 
 class NodeOutput(Pin):
+    def __init__(self,
+                 pin_name='',
+                 pin_class='',
+                 pin_type='data',
+                 hide_icon=False):  # 添加hide_icon参数
+
+        super().__init__(pin_name=pin_name, pin_class=pin_class, pin_type=pin_type)
+        self.hide_icon = hide_icon
 
     def init_port(self,index):
         if self._pin_type=='data' or self._pin_type=='var':
-            self.port = OutputPort(port_label=self._pin_name,port_class=self._pin_class,port_color=self._pin_color)
+            self.port = OutputPort(port_label=self._pin_name,port_class=self._pin_class,port_color=self._pin_color, hide_icon=self.hide_icon)
             self.port.set_port_index(index)
 
         elif self._pin_type=='exec':
-            self.port = EXECOutPort(port_label=self._pin_name)
+            self.port = EXECOutPort(port_label=self._pin_name, hide_icon=self.hide_icon)
             self.port.set_port_index(index)
 
         else:
