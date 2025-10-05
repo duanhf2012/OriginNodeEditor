@@ -67,7 +67,7 @@
 
   {
 		"name": "BoolIf",
-		"title": "布尔条件",
+		"title": "布尔判断",
 		"package": "流程控制",
 		"description": "布尔条件",
 		"is_pure": true,
@@ -236,7 +236,7 @@
 			} ,
           {
 				"name": "",
-				"type": "data",
+				"type": "exec",
                 "hide_icon": true
 			},{
 				"name": "",
@@ -255,11 +255,14 @@
 	},
   {
 		"name": "Probability",
-		"title": "概率(万分比)",
+		"title": "概率判断(万分比)",
 		"package": "流程控制",
-		"description": "概率(万分比)",
+		"description": "概率判断(万分比)",
 		"is_pure": true,
-		"inputs": [
+		"inputs": [{
+				"name": "",
+				"type": "exec"
+			},
           {
 				"name": "概率",
 				"type": "data",
