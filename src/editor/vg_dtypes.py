@@ -82,13 +82,15 @@ class VGDtypes:
         Bool.__name__: '#ff0606',
         String.__name__: '#be0ba0',
         Array.__name__: '#d4aa24',
-        Dict.__name__: '#ed6c03',
-        Class.__name__: '#0747bb',
-        Vector.__name__: '#055c54',
-        File.__name__: '#b92ee6',
-        Table.__name__: '#00BFFF',
-        Column.__name__: '#00FFFF',
-        Any.__name__:'#fff'
+        #'array': '#d4aa24',  # 添加array键的映射
+
+        # Dict.__name__: '#ed6c03',
+        # Class.__name__: '#0747bb',
+        # Vector.__name__: '#055c54',
+        # File.__name__: '#b92ee6',
+        # Table.__name__: '#00BFFF',
+        # Column.__name__: '#00FFFF',
+        # Any.__name__:'#fff'
     }
 
     dtypes_clses = {
@@ -97,13 +99,14 @@ class VGDtypes:
         Bool.__name__: Bool,
         String.__name__: String,
         Array.__name__: Array,
-        Dict.__name__: Dict,
-        Class.__name__: Class,
-        Vector.__name__: Vector,
-        File.__name__: File,
-        Table.__name__: Table,
-        Column.__name__: Column,
-        Any.__name__: Any
+        'array': Array,
+        # Dict.__name__: Dict,
+        # Class.__name__: Class,
+        # Vector.__name__: Vector,
+        # File.__name__: File,
+        # Table.__name__: Table,
+        # Column.__name__: Column,
+        # Any.__name__: Any
     }
 
     @staticmethod
@@ -174,6 +177,10 @@ class VGDtypes:
             dtype_name = dtype
             if not isinstance(dtype, str):
                 dtype_name = dtype.__name__
+
+            # 将"list"映射为"array"
+            if dtype_name == 'list':
+                dtype_name = 'array'
 
             data.append({
                 'icon': VGDtypes.get_cls_icon(dtype),

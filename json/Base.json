@@ -75,5 +75,109 @@
 				"data_type": "Integer",
 				"has_input": false
 			}]
-	}
+	},
+  {
+    "name": "CreateIntArray",
+    "title": "创建整型数组",
+    "package": "基础",
+    "description": "创建整型数组",
+    "is_pure": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "data",
+        "data_type": "Array",
+        "has_input": false,
+        "pin_widget": "IntegerArrayWdg"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "数组",
+        "type": "data",
+        "data_type": "Array",
+        "has_input": false
+      }
+    ]
+  },
+  {
+    "name": "CreateStringArray",
+    "title": "创建字符串数组",
+    "package": "基础",
+    "description": "创建字符串数组",
+    "is_pure": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "data",
+        "data_type": "Array",
+        "has_input": false,
+        "pin_widget": "StringArrayWdg"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "数组",
+        "type": "data",
+        "data_type": "Array",
+        "has_input": false
+      }
+    ]
+  },
+  {
+    "name": "AppendStringToArray",
+    "title": "数组追加字符串",
+    "package": "基础",
+    "description": "创建字符串数组",
+    "is_pure": true,
+    "inputs": [
+      {
+        "name": "数组",
+        "type": "data",
+        "data_type": "Array",
+        "has_input": true
+      }, {
+        "name": "字符串",
+        "type": "data",
+        "data_type": "String",
+        "has_input": true
+      }
+    ],
+    "outputs": [
+      {
+        "name": "数组",
+        "type": "data",
+        "data_type": "Array",
+        "has_input": false
+      }
+    ]
+  },
+  {
+    "name": "AppendIntegerToArray",
+    "title": "数组追加整型",
+    "package": "基础",
+    "description": "创建整型数组",
+    "is_pure": true,
+    "inputs": [
+      {
+        "name": "数组",
+        "type": "data",
+        "data_type": "Array",
+        "has_input": true
+      }, {
+        "name": "数值",
+        "type": "data",
+        "data_type": "Integer",
+        "has_input": true
+      }
+    ],
+    "outputs": [
+      {
+        "name": "数组",
+        "type": "data",
+        "data_type": "Array",
+        "has_input": false
+      }
+    ]
+  }
 ]

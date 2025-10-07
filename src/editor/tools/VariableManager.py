@@ -75,12 +75,18 @@ class Variable:
         type_name = self.type
         if not isinstance(self.type, str):
             type_name = self.type.__name__
+            # 将"list"映射为"array"
+            if type_name == 'list':
+                type_name = 'array'
             dv = VGDtypes.get_default_value(self.type)
 
         return {'name':self.name,'type':type_name,'value':dv,'group':self.group}
 
     def __repr__(self) -> str:
         type_name = self.type
+        # 将"list"映射为"array"
+        if type_name == 'list':
+            type_name = 'array'
         if not isinstance(self.type,str):
             type_name = self.type.__name__
             dv = VGDtypes.get_default_value(self.type)
