@@ -1,0 +1,176 @@
+[{
+		"name": "AddInt",
+		"title": "加(int)",
+		"package": "运算",
+		"description": "加(int)",
+		"is_pure": true,
+		"inputs": [{
+				"name": "A",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			},{
+				"name": "B",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			}
+        ],
+		"outputs": [
+        {
+				"name": "结果",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": false
+			}]
+	},
+  {
+		"name": "SubInt",
+		"title": "减(int)",
+		"package": "运算",
+		"description": "减(int)",
+		"is_pure": true,
+		"inputs": [{
+				"name": "A",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			},{
+				"name": "B",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			},{
+				"name": "abs",
+				"type": "data",
+				"data_type": "Boolean",
+				"has_input": true
+			}
+        ],
+		"outputs": [
+        {
+				"name": "结果",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": false
+			}]
+	},
+  {
+		"name": "MulInt",
+		"title": "乘(int)",
+		"package": "运算",
+		"description": "乘(int)",
+		"is_pure": true,
+		"inputs": [{
+				"name": "A",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			},{
+				"name": "B",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			}
+        ],
+		"outputs": [
+        {
+				"name": "结果",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": false
+			}]
+	}
+,
+  {
+		"name": "DivInt",
+		"title": "除(int)",
+		"package": "运算",
+		"description": "除(int)",
+		"is_pure": true,
+		"inputs": [{
+				"name": "A",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			},{
+				"name": "B",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			},{
+				"name": "四舍五入",
+				"type": "data",
+				"data_type": "Boolean",
+				"has_input": true
+			}
+        ],
+		"outputs": [
+        {
+				"name": "结果",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": false
+			}]
+	}
+
+  ,
+  {
+		"name": "ModInt",
+		"title": "取模(int)",
+		"package": "运算",
+		"description": "取模(int)",
+		"is_pure": true,
+		"inputs": [{
+				"name": "A",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			},{
+				"name": "B",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			}
+        ],
+		"outputs": [
+        {
+				"name": "结果",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": false
+			}]
+	}
+    ,
+  {
+		"name": "RandNumber",
+		"title": "范围随机[0,99]",
+		"package": "运算",
+		"description": "范围随机",
+		"is_pure": true,
+		"inputs": [{
+				"name": "随机种子",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			},{
+				"name": "最小值",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			},{
+				"name": "最大值",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			}
+        ],
+		"outputs": [
+        {
+				"name": "随机数",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": false
+			}]
+	}
+]

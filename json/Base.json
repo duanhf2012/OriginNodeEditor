@@ -1,0 +1,79 @@
+[{
+		"name": "GetArrayInt",
+		"title": "获取数组值(int)",
+		"package": "基础",
+		"description": "获取数组值(int)",
+		"is_pure": true,
+		"inputs": [{
+				"name": "数组",
+				"type": "data",
+				"data_type": "array",
+				"has_input": true
+			},{
+				"name": "索引",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			}
+        ],
+		"outputs": [
+        {
+				"name": "值",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": false
+			}]
+	},
+
+
+{
+		"name": "GetArrayString",
+		"title": "获取数组值(string)",
+		"package": "基础",
+		"description": "获取数组值(string)",
+		"is_pure": true,
+		"inputs": [{
+				"name": "数组",
+				"type": "data",
+				"data_type": "array",
+				"has_input": true
+			},{
+				"name": "索引",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			}
+        ],
+		"outputs": [
+        {
+				"name": "值",
+				"type": "data",
+				"data_type": "String",
+				"has_input": false
+			}]
+	},
+
+
+
+{
+		"name": "GetArrayLen",
+		"title": "获取数组长度",
+		"package": "基础",
+		"description": "获取数组长度",
+		"is_pure": true,
+		"inputs": [{
+				"name": "数组",
+				"type": "data",
+				"data_type": "array",
+				"has_input": true
+			}
+        ],
+		"outputs": [
+        {
+				"name": "长度",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": false
+			}]
+	}
+]
