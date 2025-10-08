@@ -9,9 +9,19 @@
 			"name": "",
 			"type": "exec"
 		},{
-			"name": "要打印的值",
+			"name": "要打印的值1",
 			"type": "data",
 			"data_type": "Integer",
+			"has_input": true
+		},{
+			"name": "要打印的值2",
+			"type": "data",
+			"data_type": "String",
+			"has_input": true
+		},{
+			"name": "要打印的值3",
+			"type": "data",
+			"data_type": "Array",
 			"has_input": true
 		}
 		],

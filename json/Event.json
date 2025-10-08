@@ -1,0 +1,56 @@
+[
+  {
+		"name": "CreateTimer",
+		"title": "创建定时器",
+		"package": "基础",
+		"description": "创建定时器",
+		"is_pure": true,
+		"inputs": [{
+				"name": "",
+				"type": "exec"
+			} ,{
+				"name": "时间(毫秒)",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			},
+          {
+            "name": "附加参数",
+            "type": "data",
+            "data_type": "Array",
+            "has_input": true
+          }
+        ],
+		"outputs": [{
+				"name": "",
+				"type": "exec"
+			} ,
+        {
+				"name": "定时器ID",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": false
+			}]
+	},
+  {
+		"name": "CloseTimer",
+		"title": "关闭定时器",
+		"package": "基础",
+		"description": "关闭定时器",
+		"is_pure": true,
+		"inputs": [{
+				"name": "",
+				"type": "exec"
+			} ,{
+				"name": "定时器ID",
+				"type": "data",
+				"data_type": "Integer",
+				"has_input": true
+			}
+        ],
+		"outputs": [{
+				"name": "",
+				"type": "exec"
+			} ]
+	}
+]
