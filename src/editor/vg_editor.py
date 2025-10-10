@@ -46,7 +46,7 @@ class VisualGraphWindow(QMainWindow):
         # 初始化node环境
         VG_ENV.initialize_node_env()
 
-        self.setWindowTitle('Visual Graph')
+        self.setWindowTitle('Origin NodeEditor')
         self.resize(1900,800)
         self.center()
 
@@ -136,8 +136,7 @@ class VisualGraphWindow(QMainWindow):
         self.initVariableTree()
         self.left_layout.addWidget(sw)
 
-
-        # 左边侧边栏 一个边栏TitleBar
+        # 右侧边栏 一个边栏TitleBar
         self.right_sidebar = QWidget(self)
         self.right_layout = QVBoxLayout(self.right_sidebar)
         self.right_layout.setContentsMargins(0,0,0,0)
@@ -147,24 +146,26 @@ class VisualGraphWindow(QMainWindow):
         # 添加一个树
         self.model_data = VG_ENV.get_nodelib_json_data()
 
-        # 创建包含搜索框的节点列表组件
+        # 右边--创建包含搜索框的节点列表组件
         searchable_node_widget = QWidget()
         searchable_layout = QVBoxLayout(searchable_node_widget)
         searchable_layout.setContentsMargins(0, 0, 0, 0)
 
         # 添加搜索框
         search_edit = QLineEdit()
+        search_edit.setFixedHeight(30)
+        search_edit.setContentsMargins(2,2,2,2)
         search_edit.setPlaceholderText("搜索模块...")
         searchable_layout.addWidget(search_edit)
 
         self.model_tree = NodeListWidget(self.model_data,self,dragEnabled=True)
         searchable_layout.addWidget(self.model_tree)
-        sw.addComp(f'模块库', searchable_node_widget, False,40)
+        sw.addComp(f'模块库', searchable_node_widget, False,35)
         # 连接搜索信号
         search_edit.textChanged.connect(self.model_tree.filter_nodes)
 
         self.detail_widget = DetailWidget(None, self)
-        sw.addComp(f'详情', self.detail_widget, False,20)
+        sw.addComp(f'详情', self.detail_widget, False,35)
         self.detail_widget.valueChanged.connect(self.refreshVariableTree)
 
         self.right_layout.addWidget(sw)
@@ -221,7 +222,7 @@ class VisualGraphWindow(QMainWindow):
         self.splitter.addWidget(self.left_sidebar)
         self.splitter.addWidget(self.center_splitter)
         self.splitter.addWidget(self.right_sidebar)
-        self.splitter.setSizes([250,250,1500,250])
+        self.splitter.setSizes([200,150,990,200])
         self.setCentralWidget(self.splitter)
 
     def setup_centeral_splitter(self):

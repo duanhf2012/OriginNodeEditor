@@ -23,7 +23,7 @@ if __name__ == "__main__":
 
     try:
         editor = VisualGraphWindow()
-        editor.setWindowIcon(QIcon(resource_path('./src/editor/icons/icon.ico'))) 
+        editor.setWindowIcon(QIcon(resource_path('./src/editor/icons/app3.ico')))
         editor.show()
     except ValueError as e:
         PrintHelper.printError(e)
