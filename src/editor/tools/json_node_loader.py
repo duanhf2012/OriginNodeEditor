@@ -143,7 +143,16 @@ class JSONNodeLoader:
             PrintHelper.debugPrint(f"创建JSON节点目录: {json_dir}")
             return
 
-        for filename in os.listdir(json_dir):
-            if filename.endswith('.json'):
-                json_path = os.path.join(json_dir, filename)
-                JSONNodeLoader.load_nodes_from_json(json_path)
+        root_dir = "./json"  # 根目录设置为 ./json
+        # 递归遍历所有目录及子目录
+        for dirpath, _, filenames in os.walk(root_dir):
+            for filename in filenames:
+                # 筛选 .json 后缀的文件
+                if filename.lower().endswith(".json"):
+                    file_path = os.path.join(dirpath, filename)
+                    JSONNodeLoader.load_nodes_from_json(file_path)
+
+        # for filename in os.listdir(json_dir):
+        #     if filename.endswith('.json'):
+        #         json_path = os.path.join(json_dir, filename)
+        #         JSONNodeLoader.load_nodes_from_json(json_path)

@@ -22,6 +22,10 @@
    "value": "./src/editor/icons/app3.ico"
   },
   {
+   "optionDest": "name",
+   "value": "OriginNodeEditor"
+  },
+  {
    "optionDest": "clean_build",
    "value": false
   },
