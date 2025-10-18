@@ -311,7 +311,7 @@ class VariableAttrSet(VGAttrSet):
                            AttrWidgetFactory.SELECTOR,
                            data={
                                'hasIcon': True,
-                               'current': variable.getType().__name__,
+                               'current': variable.getType().__name__ if variable.getType().__name__ != 'list' else 'array',
                                'items': VGDtypes.get_dtypes_icons(),
                                'func': variable.setType
                            })
