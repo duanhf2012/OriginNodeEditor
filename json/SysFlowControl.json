@@ -66,6 +66,38 @@
 	},
 
   {
+    "name": "ForeachIntArray",
+    "title": "For循环(整型数组)",
+    "package": "流程控制",
+    "description": "For循环(整型数组)",
+    "is_pure": true,
+    "inputs": [{
+      "name": "",
+      "type": "exec"
+    },
+      {
+        "name": "start",
+        "type": "data",
+        "data_type": "Array",
+        "has_input": true
+      }
+    ],
+    "outputs": [{
+      "name": "Loop Body",
+      "type": "exec"
+    },
+      {
+        "name": "Completed",
+        "type": "exec"
+      },
+      {
+        "name": "数组元素",
+        "type": "data",
+        "data_type": "Integer",
+        "has_input": false
+      }]
+  },
+  {
 		"name": "BoolIf",
 		"title": "布尔判断",
 		"package": "流程控制",
