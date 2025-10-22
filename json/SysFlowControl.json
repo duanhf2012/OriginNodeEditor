@@ -76,7 +76,7 @@
       "type": "exec"
     },
       {
-        "name": "start",
+        "name": "Int数组",
         "type": "data",
         "data_type": "Array",
         "has_input": true

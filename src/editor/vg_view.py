@@ -67,10 +67,10 @@ class VisualGraphView(QGraphicsView):
         # scale
         self._zoom_clamp = [0.2, 2]
         self._zoom_factor = 1.05
-        self._view_scale = 1.0
+        self._view_scale = 0.64
         self.setTransformationAnchor(QGraphicsView.AnchorUnderMouse)
         self.setDragMode(QGraphicsView.RubberBandDrag)
-
+        self.scale(self._view_scale, self._view_scale)
         # 画布拖动
         self._drag_mode = False
 
