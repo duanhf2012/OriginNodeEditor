@@ -648,6 +648,12 @@ class VisualGraphView(QGraphicsView):
             source_node = nodeid_obj[edge['source_node_id']]
             des_node = nodeid_obj[edge['des_node_id']]
 
+            # 当结点删除端口，对应的连线不再生成
+            if not source_node.has_output_port(edge['source_port_index']):
+                continue
+            if not des_node.has_input_port(edge['des_port_index']):
+                continue
+
             source_port = source_node.get_output_port(
                 edge['source_port_index'])
             des_port = des_node.get_input_port(edge['des_port_index'])

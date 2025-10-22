@@ -815,8 +815,14 @@ class TemplateNode(GraphNode):
         for port in self.out_ports:
             port.new_session(self._session_id)
 
+    def has_input_port(self, i):
+        return  i<len(self.in_ports)
+
     def get_input_port(self, i):
         return self.in_ports[i]
+
+    def has_output_port(self, i):
+        return  i<len(self.out_ports)
 
     def get_output_port(self, i):
         return self.out_ports[i]
