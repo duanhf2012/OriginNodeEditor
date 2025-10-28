@@ -28,7 +28,8 @@ class NodePort(QGraphicsItem):
                  connected_ports=None,
                  edges=None,
                  default_widget=None,
-                 hide_icon = False
+                 hide_icon = False,
+                 port_id = None,
                  ):
         super().__init__(parent)
 
@@ -38,6 +39,15 @@ class NodePort(QGraphicsItem):
         self._port_type = port_type
         self._edges = [] if edges is None else edges
         self._connected_ports:list[NodePort] = [] if edges is None else edges
+        if port_id is not None:
+            self._port_id = port_id
+        else:
+            # 默认端口ID格式：port_label + 类型 + 随机后缀
+            import random
+            import time
+            timestamp = int(time.time() * 1000)
+            random_suffix = random.randint(1000, 9999)
+            self._port_id = f"{port_label}_{port_type}_{timestamp}_{random_suffix}"
 
         self.running_pin = None
 
@@ -59,6 +69,14 @@ class NodePort(QGraphicsItem):
         # 设置port的值
         self._port_value = None
         self._has_value_set = False
+
+    def set_port_id(self, port_id):
+        """设置端口ID"""
+        self._port_id = port_id
+
+    def get_port_id(self):
+        """获取端口ID"""
+        return self._port_id
 
 
     def boundingRect(self) -> QRectF:
@@ -199,15 +217,16 @@ class EXECPort(NodePort):
                  port_color='#ffffff',
                  port_type=NodePort.PORT_TYPE_EXEC_IN,
                  parent=None,
-                 hide_icon=False):
-        super().__init__(port_label, port_class, port_color, port_type, parent, hide_icon=hide_icon)
+                 hide_icon=False,
+                 port_id=None):
+        super().__init__(port_label, port_class, port_color, port_type, parent, hide_icon=hide_icon, port_id=port_id)
 
 
 
 class EXECInPort(EXECPort):
 
-    def __init__(self,port_label='', hide_icon=False):
-        super().__init__(port_label=port_label, port_type=NodePort.PORT_TYPE_EXEC_IN, hide_icon=hide_icon)
+    def __init__(self,port_label='', hide_icon=False, port_id=None):
+        super().__init__(port_label=port_label, port_type=NodePort.PORT_TYPE_EXEC_IN, hide_icon=hide_icon, port_id=port_id)
 
     def paint(self, painter: QPainter, option, widget) -> None:
 
@@ -238,8 +257,8 @@ class EXECInPort(EXECPort):
 
 class EXECOutPort(EXECPort):
 
-    def __init__(self,port_label='', hide_icon=False):
-        super().__init__(port_label=port_label, port_type=NodePort.PORT_TYPE_EXEC_OUT, hide_icon=hide_icon)
+    def __init__(self,port_label='', hide_icon=False, port_id=None):
+        super().__init__(port_label=port_label, port_type=NodePort.PORT_TYPE_EXEC_OUT, hide_icon=hide_icon,  port_id=port_id)
 
     def paint(self, painter: QPainter, option, widget) -> None:
         # print('==',self.mapToScene(self.pos()),self._parent_node._id)
@@ -279,8 +298,8 @@ class ParamPort(NodePort):
                  port_label='',
                  port_class='str',
                  port_color='#ffffff',
-                 parent=None,default_widget=None,hide_icon=False,default_value = None):
-        super().__init__(port_label, port_class, port_color, NodePort.PORT_TYPE_PARAM, parent,default_widget=default_widget,hide_icon=hide_icon)
+                 parent=None,default_widget=None,hide_icon=False,default_value = None,port_id=None):
+        super().__init__(port_label, port_class, port_color, NodePort.PORT_TYPE_PARAM, parent,default_widget=default_widget,hide_icon=hide_icon,port_id=port_id)
         self.default_value = default_value
 
         if default_widget is not None:
@@ -352,9 +371,9 @@ class OutputPort(NodePort):
                  port_class='str',
                  port_color='#ffffff',
                  parent=None,
-                 hide_icon=False):
+                 hide_icon=False,port_id=None):
         super().__init__(port_label, port_class, port_color,
-                         NodePort.PORT_TYPE_OUTPUT, parent,hide_icon=hide_icon)
+                         NodePort.PORT_TYPE_OUTPUT, parent,hide_icon=hide_icon,port_id=port_id)
 
     def paint(self, painter: QPainter, option, widget) -> None:
 
@@ -410,10 +429,12 @@ class Pin:
                  pin_type='data',
                  pin_widget=None,
                  has_input=True,
-                 default_value=None):
+                 default_value=None,
+                 port_id=None):
 
         self._pin_name = pin_name
         self._pin_type = pin_type
+        self._port_id = port_id  # 存储端口ID
 
         if self._pin_type == 'data' or self._pin_type == 'var':
             self._pin_class = pin_class
@@ -437,15 +458,27 @@ class Pin:
 
 
 class NodeInput(Pin):
+    def __init__(self,
+                 pin_name='',
+                 pin_class='',
+                 pin_type='data',
+                 pin_widget=None,
+                 has_input=True,
+                 default_value=None,
+                 port_id=None):  # 新增port_id参数
+
+        super().__init__(pin_name=pin_name, pin_class=pin_class, pin_type=pin_type,
+                         pin_widget=pin_widget, has_input=has_input,
+                         default_value=default_value, port_id=port_id)
 
     def init_port(self,index):
         if self._pin_type=='data' or self._pin_type=='var':
             hide_icon = not self.has_input
-            self.port = ParamPort(port_label=self._pin_name,port_class=self._pin_class,port_color=self._pin_color,default_widget=self._pin_widget,hide_icon=hide_icon,default_value = self.default_value)
+            self.port = ParamPort(port_label=self._pin_name,port_class=self._pin_class,port_color=self._pin_color,default_widget=self._pin_widget,hide_icon=hide_icon,default_value = self.default_value,port_id=self._port_id)
             self.port.set_port_index(index)
 
         elif self._pin_type == 'exec':
-            self.port = EXECInPort(port_label=self._pin_name)
+            self.port = EXECInPort(port_label=self._pin_name,port_id=self._port_id)
             self.port.set_port_index(index)
 
         else:
@@ -459,18 +492,19 @@ class NodeOutput(Pin):
                  pin_name='',
                  pin_class='',
                  pin_type='data',
-                 hide_icon=False):  # 添加hide_icon参数
+                 hide_icon=False,
+                 port_id=None):  # 添加hide_icon参数
 
-        super().__init__(pin_name=pin_name, pin_class=pin_class, pin_type=pin_type)
+        super().__init__(pin_name=pin_name, pin_class=pin_class, pin_type=pin_type, port_id=port_id)
         self.hide_icon = hide_icon
 
     def init_port(self,index):
         if self._pin_type=='data' or self._pin_type=='var':
-            self.port = OutputPort(port_label=self._pin_name,port_class=self._pin_class,port_color=self._pin_color, hide_icon=self.hide_icon)
+            self.port = OutputPort(port_label=self._pin_name,port_class=self._pin_class,port_color=self._pin_color, hide_icon=self.hide_icon, port_id=self._port_id)
             self.port.set_port_index(index)
 
         elif self._pin_type=='exec':
-            self.port = EXECOutPort(port_label=self._pin_name, hide_icon=self.hide_icon)
+            self.port = EXECOutPort(port_label=self._pin_name, hide_icon=self.hide_icon,port_id=self._port_id)
             self.port.set_port_index(index)
 
         else:

@@ -369,7 +369,7 @@ class StdReceiver(QObject):
 
 class PrintHelper:
 
-    DEBUG_MODE = True
+    DEBUG_MODE = False
 
     @staticmethod
     def print(text, color='#fff'):
@@ -377,7 +377,7 @@ class PrintHelper:
         data['color'] = color
         data['text'] = text
 
-        print(json.dumps(data))
+        print(json.dumps(data, ensure_ascii=False))
 
     @staticmethod
     def printError(text):

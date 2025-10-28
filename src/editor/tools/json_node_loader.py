@@ -68,6 +68,8 @@ class JSONNodeLoader:
 
             # 创建输入端口
             input_pins = []
+            input_port_ids = set()  # 用于检测输入端口ID重复
+
             if not is_pure:
                 input_pins.append(NodeInput(pin_type='exec'))
 
@@ -77,6 +79,15 @@ class JSONNodeLoader:
                 data_type = input_def.get('data_type', 'Any')
                 has_input = input_def.get('has_input', True)
                 pin_class = VGDtypes.get_dtype_by_name(data_type)
+
+                # 获取端口ID配置
+                port_id = input_def.get('port_id',None)
+                # 检测输入端口ID重复
+                if port_id is not None:
+                    if port_id in input_port_ids:
+                        PrintHelper.printError(f"节点 {node_title} 的输入端口ID重复: {port_id}")
+                        return
+                    input_port_ids.add(port_id)
 
                 pin_widget = input_def.get('pin_widget', None)
                 # 将字符串widget名称转换为widget类
@@ -91,11 +102,13 @@ class JSONNodeLoader:
                     pin_type=pin_type,
                     pin_class=pin_class,
                     has_input=has_input,
-                    pin_widget=pin_widget
+                    pin_widget=pin_widget,
+                    port_id=port_id  # 传递端口ID配置
                 ))
 
             # 创建输出端口
             output_pins = []
+            output_port_ids = set()  # 用于检测输出端口ID重复
             if not is_pure:
                 output_pins.append(NodeOutput(pin_type='exec'))
 
@@ -104,6 +117,14 @@ class JSONNodeLoader:
                 pin_type = output_def.get('type', 'data')
                 data_type = output_def.get('data_type', 'Any')
                 hide_icon = output_def.get('hide_icon', False)  # 获取hide_icon属性
+                port_id = output_def.get('port_id', None)  # 获取端口ID配置
+
+                # 检测输出端口ID重复
+                if port_id is not None:
+                    if port_id in output_port_ids:
+                        PrintHelper.printError(f"节点 {node_title} 的输出端口ID重复: {port_id}")
+                        return  # 跳过重复的端口
+                    output_port_ids.add(port_id)
 
                 pin_class = VGDtypes.get_dtype_by_name(data_type)
 
@@ -111,7 +132,8 @@ class JSONNodeLoader:
                     pin_name=pin_name,
                     pin_type=pin_type,
                     pin_class=pin_class,
-                    hide_icon=hide_icon  # 传递hide_icon参数
+                    hide_icon=hide_icon,  # 传递hide_icon参数
+                    port_id=port_id  # 传递端口ID配置
                 ))
 
             # 创建节点类

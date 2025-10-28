@@ -136,10 +136,20 @@ class NodeEdge(QGraphicsPathItem):
         edge = {}
         edge['edge_id'] = self._edge_id
         edge['source_node_id'] = self._source_port.get_parent_node()._node_id
-        edge['source_port_index'] = self._source_port.get_port_index()
+
+        #edge['source_port_index'] = self._source_port.get_port_index()
+        edge['source_port_id'] = self._source_port.get_port_id()
+        # 使用端口ID替代端口索引，保持向后兼容性
+        # if hasattr(self._source_port, 'get_port_id') and self._source_port.get_port_id():
+        #     edge['source_port_id'] = self._source_port.get_port_id()
+        #     edge['source_port_index'] = self._source_port.get_port_index()  # 保持向后兼容
+        # else:
+        #     edge['source_port_index'] = self._source_port.get_port_index()
+
 
         edge['des_node_id'] =  self._des_port.get_parent_node()._node_id
-        edge['des_port_index'] = self._des_port.get_port_index()
+        #edge['des_port_index'] = self._des_port.get_port_index()
+        edge['des_port_id'] = self._des_port.get_port_id()
 
         return edge
 

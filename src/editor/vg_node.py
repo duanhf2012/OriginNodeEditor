@@ -827,6 +827,28 @@ class TemplateNode(GraphNode):
     def get_output_port(self, i):
         return self.out_ports[i]
 
+    # 新增：通过端口ID查找输入端口
+    def get_input_port_by_id(self, port_id):
+        for port in self.in_ports:
+            if hasattr(port, 'get_port_id') and port.get_port_id() == port_id:
+                return port
+        return None
+
+    # 新增：通过端口ID查找输出端口
+    def get_output_port_by_id(self, port_id):
+        for port in self.out_ports:
+            if hasattr(port, 'get_port_id') and port.get_port_id() == port_id:
+                return port
+        return None
+
+    # 新增：检查是否存在指定ID的输入端口
+    def has_input_port_by_id(self, port_id):
+        return self.get_input_port_by_id(port_id) is not None
+
+    # 新增：检查是否存在指定ID的输出端口
+    def has_output_port_by_id(self, port_id):
+        return self.get_output_port_by_id(port_id) is not None
+
     def to_string(self):
 
         node = {}
