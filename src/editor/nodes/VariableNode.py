@@ -9,14 +9,14 @@ from vg_dtypes import VGDtypes
 class Getter_Setter_Helper:
 
     @staticmethod
-    def variable_getter_node(var_name,var_class):
+    def variable_getter_node(var_name,var_class, port_id=None):
 
-        return type(f'Get_{var_name}',(GetterNode,),{'var_name':var_name,'var_class':var_class})
+        return type(f'Get_{var_name}',(GetterNode,),{'var_name':var_name,'var_class':var_class, 'port_id':port_id})
 
     @staticmethod
-    def variable_setter_node(var_name,var_class):
+    def variable_setter_node(var_name,var_class, port_id=None):
 
-        return type(f'Set_{var_name}',(SetterNode,),{'var_name':var_name,'var_class':var_class})
+        return type(f'Set_{var_name}',(SetterNode,),{'var_name':var_name,'var_class':var_class, 'port_id':port_id})
 
 
 
@@ -30,12 +30,13 @@ class GetterNode(Node):
 
     var_name = None
     var_class = None
+    port_id = None  # 添加port_id属性
 
     def __init__(self):
 
         self.node_title = f"Get {self.var_name}"
         self.input_pins = []
-        self.output_pins = [NodeOutput(pin_name=self.var_name,pin_type='data',pin_class=self.var_class)]
+        self.output_pins = [NodeOutput(pin_name=self.var_name,pin_type='data',pin_class=self.var_class, port_id=0)]
 
         super().__init__()
 
@@ -58,9 +59,9 @@ class SetterNode(Node):
 
         self.node_title = f'Set {self.var_name}'
 
-        self.input_pins = [NodeInput(pin_type='exec'),NodeInput(pin_name=self.var_name,pin_type='data',pin_class=self.var_class)]
+        self.input_pins = [NodeInput(pin_type='exec',port_id=0),NodeInput(pin_name=self.var_name,pin_type='data',pin_class=self.var_class, port_id=1)]
 
-        self.output_pins = [NodeOutput(pin_type='exec'),NodeOutput(pin_name='',pin_class=self.var_class,pin_type='data')]
+        self.output_pins = [NodeOutput(pin_type='exec',port_id=0),NodeOutput(pin_name='',pin_class=self.var_class,pin_type='data', port_id=1)]
 
         super().__init__()
 
