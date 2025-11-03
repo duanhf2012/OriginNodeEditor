@@ -8,12 +8,14 @@
 				"name": "数组",
 				"type": "data",
 				"data_type": "array",
-				"has_input": true
+				"has_input": true,
+                "port_id": 0
 			},{
 				"name": "索引",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": true
+				"has_input": true,
+                "port_id": 1
 			}
         ],
 		"outputs": [
@@ -21,7 +23,8 @@
 				"name": "值",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": false
+				"has_input": false,
+                "port_id": 0
 			}]
 	},
 
@@ -36,12 +39,14 @@
 				"name": "数组",
 				"type": "data",
 				"data_type": "array",
-				"has_input": true
+				"has_input": true,
+                "port_id": 0
 			},{
 				"name": "索引",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": true
+				"has_input": true,
+                "port_id": 1
 			}
         ],
 		"outputs": [
@@ -49,7 +54,8 @@
 				"name": "值",
 				"type": "data",
 				"data_type": "String",
-				"has_input": false
+				"has_input": false,
+                "port_id": 0
 			}]
 	},
 
@@ -65,7 +71,8 @@
 				"name": "数组",
 				"type": "data",
 				"data_type": "array",
-				"has_input": true
+				"has_input": true,
+                "port_id": 0
 			}
         ],
 		"outputs": [
@@ -73,7 +80,8 @@
 				"name": "长度",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": false
+				"has_input": false,
+                "port_id": 0
 			}]
 	},
   {
@@ -88,7 +96,8 @@
         "type": "data",
         "data_type": "Array",
         "has_input": false,
-        "pin_widget": "IntegerArrayWdg"
+        "pin_widget": "IntegerArrayWdg",
+        "port_id": 0
       }
     ],
     "outputs": [
@@ -96,7 +105,8 @@
         "name": "数组",
         "type": "data",
         "data_type": "Array",
-        "has_input": false
+        "has_input": false,
+        "port_id": 0
       }
     ]
   },
@@ -112,7 +122,8 @@
         "type": "data",
         "data_type": "Array",
         "has_input": false,
-        "pin_widget": "StringArrayWdg"
+        "pin_widget": "StringArrayWdg",
+		"port_id": 0
       }
     ],
     "outputs": [
@@ -120,7 +131,8 @@
         "name": "数组",
         "type": "data",
         "data_type": "Array",
-        "has_input": false
+        "has_input": false,
+		"port_id": 0
       }
     ]
   },
@@ -135,12 +147,14 @@
         "name": "数组",
         "type": "data",
         "data_type": "Array",
-        "has_input": true
+        "has_input": true,
+		"port_id": 0
       }, {
         "name": "字符串",
         "type": "data",
         "data_type": "String",
-        "has_input": true
+        "has_input": true,
+		"port_id": 1
       }
     ],
     "outputs": [
@@ -148,7 +162,8 @@
         "name": "数组",
         "type": "data",
         "data_type": "Array",
-        "has_input": false
+        "has_input": false,
+		"port_id": 0
       }
     ]
   },
@@ -163,12 +178,14 @@
         "name": "数组",
         "type": "data",
         "data_type": "Array",
-        "has_input": true
+        "has_input": true,
+		"port_id": 0
       }, {
         "name": "数值",
         "type": "data",
         "data_type": "Integer",
-        "has_input": true
+        "has_input": true,
+		"port_id": 1
       }
     ],
     "outputs": [
@@ -176,7 +193,8 @@
         "name": "数组",
         "type": "data",
         "data_type": "Array",
-        "has_input": false
+        "has_input": false,
+		"port_id": 0
       }
     ]
   }

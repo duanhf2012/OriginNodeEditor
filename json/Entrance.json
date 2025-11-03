@@ -8,17 +8,20 @@
 		"inputs": [],
 		"outputs": [{
 				"name": "",
-				"type": "exec"
+				"type": "exec",
+				"port_id": 0
 			},{
 				"name": "对象ID",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": true
+				"has_input": true,
+				"port_id": 1
 			},{
 				"name": "param数组",
 				"type": "data",
 				"data_type": "array",
-				"has_input": true
+				"has_input": true,
+				"port_id": 2
 			}]
 	},
   {
@@ -30,22 +33,26 @@
 		"inputs": [],
 		"outputs": [{
 				"name": "",
-				"type": "exec"
+				"type": "exec",
+				"port_id": 0
 			},{
 				"name": "对象ID",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": true
+				"has_input": true,
+				"port_id": 1
 			},{
 				"name": "参数1",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": true
+				"has_input": true,
+				"port_id": 2
 			},{
 				"name": "参数2",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": true
+				"has_input": true,
+				"port_id": 3
 			}]
 	},
   {
@@ -57,17 +64,20 @@
 		"inputs": [],
 		"outputs": [{
 				"name": "",
-				"type": "exec"
+				"type": "exec",
+				"port_id": 0
 			},{
 				"name": "定时器ID",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": true
+				"has_input": true,
+				"port_id": 1
 			}, {
-        "name": "附加参数",
-        "type": "data",
-        "data_type": "Array",
-        "has_input": false
+				"name": "附加参数",
+				"type": "data",
+				"data_type": "Array",
+				"has_input": false,
+				"port_id": 2
       }]
 	}
 ]

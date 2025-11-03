@@ -8,12 +8,14 @@
 				"name": "A",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": true
+				"has_input": true,
+				"port_id": 0
 			},{
 				"name": "B",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": true
+				"has_input": true,
+				"port_id": 1
 			}
         ],
 		"outputs": [
@@ -21,7 +23,8 @@
 				"name": "结果",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": false
+				"has_input": false,
+				"port_id": 0
 			}]
 	},
   {
@@ -34,17 +37,20 @@
 				"name": "A",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": true
+				"has_input": true,
+				"port_id": 0
 			},{
 				"name": "B",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": true
+				"has_input": true,
+				"port_id": 1
 			},{
 				"name": "abs",
 				"type": "data",
 				"data_type": "Boolean",
-				"has_input": true
+				"has_input": true,
+				"port_id": 2
 			}
         ],
 		"outputs": [
@@ -52,7 +58,8 @@
 				"name": "结果",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": false
+				"has_input": false,
+				"port_id": 0
 			}]
 	},
   {
@@ -65,12 +72,14 @@
 				"name": "A",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": true
+				"has_input": true,
+				"port_id": 0
 			},{
 				"name": "B",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": true
+				"has_input": true,
+				"port_id": 1
 			}
         ],
 		"outputs": [
@@ -78,7 +87,8 @@
 				"name": "结果",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": false
+				"has_input": false,
+				"port_id": 0
 			}]
 	}
 ,
@@ -92,17 +102,20 @@
 				"name": "A",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": true
+				"has_input": true,
+				"port_id": 0
 			},{
 				"name": "B",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": true
+				"has_input": true,
+				"port_id": 1
 			},{
 				"name": "四舍五入",
 				"type": "data",
 				"data_type": "Boolean",
-				"has_input": true
+				"has_input": true,
+				"port_id": 2
 			}
         ],
 		"outputs": [
@@ -110,7 +123,8 @@
 				"name": "结果",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": false
+				"has_input": false,
+				"port_id": 0
 			}]
 	}
 
@@ -125,12 +139,14 @@
 				"name": "A",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": true
+				"has_input": true,
+				"port_id": 0
 			},{
 				"name": "B",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": true
+				"has_input": true,
+				"port_id": 1
 			}
         ],
 		"outputs": [
@@ -138,7 +154,8 @@
 				"name": "结果",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": false
+				"has_input": false,
+				"port_id": 0
 			}]
 	}
     ,
@@ -152,17 +169,20 @@
 				"name": "随机种子",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": true
+				"has_input": true,
+				"port_id": 0
 			},{
 				"name": "最小值",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": true
+				"has_input": true,
+				"port_id": 1
 			},{
 				"name": "最大值",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": true
+				"has_input": true,
+				"port_id": 2
 			}
         ],
 		"outputs": [
@@ -170,7 +190,8 @@
 				"name": "随机数",
 				"type": "data",
 				"data_type": "Integer",
-				"has_input": false
+				"has_input": false,
+				"port_id": 0
 			}]
 	}
 ]
