@@ -637,6 +637,8 @@ class VisualGraphView(QGraphicsView):
             # 设置widget的默认值
             port_dv = node['port_defaultv']
             for i, v in port_dv.items():
+                if not node_obj.has_input_port(int(i)):
+                    continue
                 port = node_obj.get_input_port(int(i))
                 port.set_widget_value(v)
 
