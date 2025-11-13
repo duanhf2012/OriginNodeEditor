@@ -87,7 +87,7 @@
 	  "port_id": 0
     },
       {
-        "name": "start",
+        "name": "整型数组",
         "type": "data",
         "data_type": "Array",
         "has_input": true,
@@ -105,11 +105,18 @@
 	    "port_id": 1
       },
       {
-        "name": "数组元素",
+        "name": "数组下标",
         "type": "data",
         "data_type": "Integer",
         "has_input": false,
 	    "port_id": 2
+      },
+      {
+        "name": "数组元素",
+        "type": "data",
+        "data_type": "Integer",
+        "has_input": false,
+	    "port_id": 3
       }]
   },
   {

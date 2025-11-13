@@ -1,7 +1,7 @@
 [
 	{
-		"name": "Output",
-		"title": "打印值",
+		"name": "DebugOutput",
+		"title": "打印调试信息",
 		"package": "测试",
 		"description": "打印值",
 		"is_pure": true,
