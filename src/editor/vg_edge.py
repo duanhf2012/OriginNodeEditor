@@ -71,15 +71,23 @@ class NodeEdge(QGraphicsPathItem):
 
 
     def paint(self, painter:QPainter, option, widget):
-
         self.update_edge_path()
 
-        painter.setPen(self._pen_default)
+        # 修改画笔设置，使选中线更明显
+        if self.isSelected():
+            # 选中时使用更粗的线条和更醒目的颜色
+            pen_selected = QPen(QColor('#FFD700'))  # 金色，非常醒目
+            pen_selected.setWidthF(3)  # 宽度增加到4
+            painter.setPen(pen_selected)
+        else:
+            # 未选中时保持原有设置
+            painter.setPen(self._pen_default)
         painter.setBrush(Qt.NoBrush)
         painter.drawPath(self.path())
 
         if self.isSelected():
-            self._shadow.setColor(self._shadow_color)
+            self._shadow.setColor(QColor('#FFA500'))  # 橙色阴影
+            self._shadow.setBlurRadius(15)  # 增加阴影模糊半径
             self.setGraphicsEffect(self._shadow)
         else:
             self._shadow.setColor('#00000000')
