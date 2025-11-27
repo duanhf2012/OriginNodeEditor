@@ -197,5 +197,61 @@
 		"port_id": 0
       }
     ]
+  },
+  {
+    "name": "AppendIntReturn",
+    "title": "追加返回结果(Int)",
+    "package": "基础",
+    "description": "追加返回结果(Int)",
+    "is_pure": true,
+    "inputs": [
+	{
+      "name": "",
+      "type": "exec",
+	  "port_id": 0
+    },
+       {
+        "name": "返回值",
+        "type": "data",
+        "data_type": "Integer",
+        "has_input": true,
+		"port_id": 1
+      }
+    ],
+    "outputs": [
+	{
+      "name": "",
+      "type": "exec",
+	  "port_id": 0
+    }
+    ]
+  },
+  {
+    "name": "AppendStringReturn",
+    "title": "追加返回结果(String)",
+    "package": "基础",
+    "description": "追加返回结果(String)",
+    "is_pure": true,
+    "inputs": [
+	{
+      "name": "",
+      "type": "exec",
+	  "port_id": 0
+    },
+       {
+        "name": "返回值",
+        "type": "data",
+        "data_type": "string",
+        "has_input": true,
+		"port_id": 1
+      }
+    ],
+    "outputs": [
+	{
+      "name": "",
+      "type": "exec",
+	  "port_id": 0
+    }
+    ]
   }
 ]
