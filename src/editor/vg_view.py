@@ -532,8 +532,8 @@ class VisualGraphView(QGraphicsView):
                 continue
 
             source_port = source_node.get_output_port(
-                edge['source_port_index'])
-            des_port = des_node.get_input_port(edge['des_port_index'])
+                edge['source_port_id'])
+            des_port = des_node.get_input_port(edge['des_port_id'])
 
             edge = self.add_node_edge(source_port, des_port)
             edge.setSelected(True)
